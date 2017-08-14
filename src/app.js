@@ -9,7 +9,7 @@ import {StyleSheet} from 'react-native';
 import {TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Index from './container/index';
+import Home from './container/home';
 import Catergry from './container/catergry';
 // import Cart from './container/cart';
 // import User from './container/user';
@@ -17,7 +17,7 @@ import Catergry from './container/catergry';
 
 const AppTab = TabNavigator({  
     Index:{  
-      screen:Index,
+      screen:Home,
       navigationOptions:({navigation}) => ({
         tabBarLabel:'首页',  
         tabBarIcon:({focused,tintColor}) => ( 

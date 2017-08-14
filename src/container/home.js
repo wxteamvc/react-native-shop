@@ -6,7 +6,7 @@ import Home from "../pages/homeView";
 import Ad from "../pages/adView";
 import Goods from '../pages/goodsView';
 
-const IndexStack = StackNavigator({  
+const HomeStack = StackNavigator({  
     Home: { 
       screen:Home,
       navigationOptions: {
@@ -34,5 +34,5 @@ const IndexStack = StackNavigator({
   
 }); 
 
-export default IndexStack;
+export default HomeStack;
 
