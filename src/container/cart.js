@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import {StackNavigator} from 'react-navigation';
 
-const Cart = StackNavigator({  
-    'AppTab': { 
-      screen:AppTab,
+import Cart from "../pages/cartView";
+import Ad from "../pages/adView";
+import Goods from '../pages/goodsView';
+
+const CartStack = StackNavigator({  
+    Cart: { 
+      screen:Cart,
       navigationOptions: {
-        header:null
+        // header:null
+      },
+    },
+    Ad: { 
+      screen:Ad,
+      navigationOptions: {
+        // header:null
       },
     },  
-    // 'goodsList': {
-    //   screen: List,
-    //   navigationOptions: {
-    //     gesturesEnabled:true,
-    //   },
-    // },  
+    Goods: { 
+      screen:Goods,
+      navigationOptions: {
+        // header:null
+      },
+    },  
 },{
     navigationOptions:{
       //code
     },  
   
 }); 
-
-export default Cart;
+export default CartStack;

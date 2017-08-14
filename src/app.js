@@ -11,8 +11,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Home from './container/home';
 import Catergry from './container/catergry';
-// import Cart from './container/cart';
-// import User from './container/user';
+import Cart from './container/cart';
+import User from './container/user';
 
 
 const AppTab = TabNavigator({  
@@ -35,24 +35,24 @@ const AppTab = TabNavigator({
       }),  
     },
     
-    // Cart:{  
-    //   screen:Cart,  
-    //   navigationOptions:({navigation}) => ({  
-    //     tabBarLabel:'购物车',  
-    //     tabBarIcon:({focused,tintColor}) => ( 
-    //        <Icon name="cart" size={25} color={tintColor}/>
-    //     )  
-    //   }),  
-    // },
-    // User:{  
-    //   screen:User,  
-    //   navigationOptions:({navigation}) => ({  
-    //     tabBarLabel:'会员中心',  
-    //     tabBarIcon:({focused,tintColor}) => ( 
-    //       <Icon name="user-o" size={25} color={tintColor}/>
-    //     )  
-    //   }),  
-    // },    
+    Cart:{  
+      screen:Cart,  
+      navigationOptions:({navigation}) => ({  
+        tabBarLabel:'购物车',  
+        tabBarIcon:({focused,tintColor}) => ( 
+           <Icon name="shopping-cart" size={25} color={tintColor}/>
+        )  
+      }),  
+    },
+    User:{  
+      screen:User,  
+      navigationOptions:({navigation}) => ({  
+        tabBarLabel:'会员中心',  
+        tabBarIcon:({focused,tintColor}) => ( 
+          <Icon name="user-o" size={25} color={tintColor}/>
+        )  
+      }),  
+    },    
   
    
 },{  
