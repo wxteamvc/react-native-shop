@@ -5,18 +5,18 @@
  */
 
 import React, { Component } from 'react';
-import {AppRegistry} from 'react-native';
+import { AppRegistry } from 'react-native';
 
-//import Store from "./store/store";
-//import { Provider } from 'react-redux';
+import Store from "./store/store";
+import { Provider } from 'react-redux';
 import App from './app';
 
 export default class Root extends Component {
   render() {
     return (
-        //<Provider store={Store}>
+        <Provider store={Store}>
             <App/>
-        //</Provider>
+        </Provider>
     );
   }
 }

@@ -12,6 +12,9 @@ import {
 
 
 export default class Ad extends Component{
+    componentDidMount(){
+        
+    }
     render(){
         return (
             <View>

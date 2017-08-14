@@ -1,32 +1,112 @@
-"use strict";
-
-
+"use strict"
 import React, { Component } from 'react';
-
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  Image,
+  ScrollView,
+  StatusBar,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
 } from 'react-native';
-
+import {DOMAIN,ScreenWidth} from '../common/global';
+import { connect } from 'react-redux'
+import Banner from '../component/banner';
+import {getinfo} from '../actions/initAction'
+import Swiper from 'react-native-swiper';
+import Search from '../component/search';
 //接收参数{this.props.navigation.state.params.****}
-export default class Home extends Component{
+class Home extends Component{
+    componentDidMount(){
+        this.props.dispatch(getinfo())
+        this.state={
+             searchStyle:{
+                backgroundColor:'#ccc',
+                opacity:0.4
+             },
+        }
+    }
+    _event=({item})=>{
+        return(
+                <Image source={{uri:DOMAIN+item.thumb}} resizeMode={'stretch'} style={{width:ScreenWidth,height:150,marginBottom:5}} />    
+        )       
+    }
+    _hotList({item}){
+         return( <View  style={{alignItems: 'center',borderRightColor:'#ccc',borderRightWidth:1}}>
+                    <Image source={{uri:DOMAIN+item.thumb}} style={{width:ScreenWidth/3-1,height:ScreenWidth/3,padding:30}}></Image>
+                    {/* <Text style={{color:'#fff',backgroundColor:'#660099',padding:2,position:'absolute',top:width/3-25,left:0}}>{item.type}</Text> */}
+                    <Text style={{color:'red',fontSize:18,fontWeight:'bold'}}>{item.productprice}</Text> 
+                    <Text style={{textDecorationLine:'line-through'}}>{item.marketprice}</Text>
+                </View>  )
+             
+     } 
+    searchBackground(e){
+    if(e.nativeEvent.contentOffset.y>170){
+        this.setState({
+            searchStyle:{
+                backgroundColor:'red',
+                opacity:0.6
+            }
+        })
+    }else{
+            this.setState({
+            searchStyle:{
+                backgroundColor:'#ccc',
+                opacity:0.4
+            },
+        
+        })
+    }
+}  
     render(){
-        return (
-            <View>
-
-                <Text>首页</Text>
-                <TouchableOpacity
-                    onPress={()=>{
-                        this.props.navigation.navigate("Goods",{'id':'12'})
-                    }}
-                >
-
-                    <Text>跳到商品详情页</Text>
-                </TouchableOpacity>
-            </View>
+        if (this.props.data.status=='success'){
+             return (
+                <View style={{flex:1}}>
+                    <View style={[this.state.searchStyle,{position:'absolute',top:0,left:0,zIndex:100,width:ScreenWidth,height:40,justifyContent:'center'}]}>
+                    <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'}/>
+                    </View> 
+                    <ScrollView onScroll={e=>{this.searchBackground(e)}}>
+                        <Banner banner={this.props.data.data.advs} />
+                          <View style={{height:50}}></View>
+                            <FlatList
+                            data={this.props.data.data.banners}
+                            renderItem={this._event}
+                            keyExtractor={(item, index)=>index}
+                            >
+                            </FlatList>
+                            <FlatList 
+                            data={this.props.data.data.recommands}
+                            horizontal={true}
+                            renderItem={this._hotList}
+                            keyExtractor={(item, index)=>index}
+                            showsHorizontalScrollIndicator={false}
+                            >
+                            </FlatList>
+                    </ScrollView> 
+                </View>
         );
+        }else{
+            return (
+                <View>
+                 <Text>LOADING....</Text>
+                 
+                </View>
+        );
+        }
+
     }
 }
+
+function  mapStateToProps(state){
+    return{
+        data:state.Init
+    }
+}
+
+
+export default  connect(mapStateToProps)(Home);
+
+
+
