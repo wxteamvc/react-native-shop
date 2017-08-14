@@ -10,7 +10,7 @@ const IndexStack = StackNavigator({
     Catergry: { 
       screen:Catergry,
       navigationOptions: {
-        // header:null
+        header:null
       },
     },
     Ad: { 
