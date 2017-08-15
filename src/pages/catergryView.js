@@ -8,36 +8,45 @@ import {
   TextInput,
   Image
 } from 'react-native';
+import { connect } from 'react-redux';
+import {getCatInfo} from '../actions/initAction';
 import Goods from '../pages/goodsView';
 import Icon from 'react-native-vector-icons/FontAwesome';
-export default class Catergry extends Component{
+ class Catergry extends Component{
     constructor(...props){
         super(...props);
-        this.state={
-            leftBarList:{},
-            selectedBar:0,
-            selectedBarId:null,
-            goodsList:{}
-        }
+        // this.state={
+        //     leftBarList:{},
+        //     selectedBar:0,
+        //     selectedBarId:null,
+        //     goodsList:{}
+        // }
     }
     componentDidMount(){
-        this._getCatList();
+        this.props.dispatch(getCatInfo());
     }
     render(){
-        return (
+        alert(this.props.data.data)
+        if(this.props.data.status=='success'){
+              return (
             <View style={{flex:1}}>
                 {/* 顶部搜索 */}
                 {this._search()}
 
                 <View style={{flex:13,flexDirection:'row'}}>
                     {/* 左边导航 */}
-                    {this._leftBar()}
+                    {/* {this._leftBar()} */}
                     {/* 右边列表 */}
-                     {this._rightList()} 
+                     {/* {this._rightList()}  */}
                 </View>
-                
             </View>
         );
+        }else{
+            return(
+            <View><Text>loading</Text></View>
+            )
+        }
+       
     }
 
     
@@ -45,7 +54,6 @@ export default class Catergry extends Component{
          fetch('http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=shop.category&mid=0&app=1')
         .then((response) => response.json())
         .then((responseJson) => {
-
            this.setState({
                leftBarList:responseJson.parent[0],
                leftBarListId:responseJson.parent[0][0].id,
@@ -125,4 +133,9 @@ export default class Catergry extends Component{
 const style = StyleSheet.create({
 
 });
-
+ function  mapStateToProps(state){
+    return{
+        data:state.Init.catList
+    }
+}
+export default  connect(mapStateToProps)(Catergry);
