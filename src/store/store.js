@@ -2,8 +2,13 @@ import { createStore, applyMiddleware } from 'redux'
 import renders from '../reducers/rootReducer'
 import thunkMiddleware from 'redux-thunk';
 
+import {persistStore, autoRehydrate} from 'redux-persist';
+import { AsyncStorage } from 'react-native';
+
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
-let store = createStoreWithMiddleware(renders);
+const store = createStoreWithMiddleware(renders,autoRehydrate());
+
+persistStore(store,{storage:AsyncStorage});
 
 export default store;
