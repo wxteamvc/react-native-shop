@@ -1,42 +1,50 @@
 import * as Types from "./actionTypes";
-import {SERVER_URL} from '../common/global'
-export function getinfo(){
+import { SERVER_URL, PRODUCT_URL } from '../common/global'
+export function getinfo() {
+    return (
+        dispatch => {
+            dispatch(init(Types.INIT_DOING))
+            fetch(SERVER_URL)
+                .then(response => response.json())
+                .then(
+                responseJson => {
+                    dispatch(init(Types.INIT_DONE, responseJson))
+                }
+                ).catch((error) => {
+                    console.error(error);
+                });
+        }
+    )
+}
+export function getCatInfo() {
+    return (
+        dispatch => {
+            dispatch(init(Types.INIT_CAT_DOING))
+            fetch(PRODUCT_URL)
+                .then(response => response.json())
+                .then(
+                responseJson => {
+                    dispatch(init(Types.INIT_CAT_DONE, responseJson))
+                }
+                )
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
 
-   return (
-     dispatch =>{
-          dispatch(init(Types.INIT_DOING))
-          fetch(SERVER_URL)
-          .then(response=>response.json())
-          .then(
-              responseJson=>{
-                dispatch(init(Types.INIT_DONE,responseJson))
-              }
-          ).catch((error) => {
-                console.error(error);
-      });
-
-
-     }
-   )
+    )
 
 
 }
-   
 
 
 
 
-
-
-
-
-
-
-
-function init(type,data={}){
-    return{
-        type:type,
-        data:data
+function init(type, data = {}) {
+    return {
+        type: type,
+        data: data
     }
 }
+
 

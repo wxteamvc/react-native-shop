@@ -101,7 +101,7 @@ class Home extends Component{
 
 function  mapStateToProps(state){
     return{
-        data:state.Init
+        data:state.Init.index
     }
 }
 
