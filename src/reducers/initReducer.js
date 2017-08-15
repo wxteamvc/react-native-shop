@@ -6,6 +6,7 @@ import * as Types from '../actions/actionTypes'
 
 const initialState = {
     index: {
+        hasInfo:false,
         status: false,
         data: {},
     },
@@ -26,6 +27,7 @@ export default function reducer1(state = initialState, action) {
         case Types.INIT_DONE:
             return Object.assign({}, state, {
                 index: {
+                    hasInfo:true,
                     status: 'success',
                     data: action.data,
                 },
