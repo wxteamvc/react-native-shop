@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import {getCatInfo} from '../actions/initAction';
 import Goods from '../pages/goodsView';
+import Search from '../component/search';
 import Icon from 'react-native-vector-icons/FontAwesome';
 var {height, width} = require('Dimensions').get('window');
  class Catergry extends Component{
@@ -37,7 +38,9 @@ var {height, width} = require('Dimensions').get('window');
             return (
                 <View style={{flex:1}}>
                     {/* 顶部搜索 */}
-                    {this._search()}
+                    <View style={{ backgroundColor:'red', width: width, height: 40, justifyContent: 'center' }}>
+                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Catergry'}/>
+                    </View>
 
                     <View style={{flex:13,flexDirection:'row'}}>
                         {/* 左边导航 */}
