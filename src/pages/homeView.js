@@ -70,7 +70,7 @@ class Home extends Component {
             return (
                 <View style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={[this.state.searchStyle, { position: 'absolute', top: 0, left: 0, zIndex: 100, width: ScreenWidth, height: 40, justifyContent: 'center' }]}>
-                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} />
+                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Home'} />
                     </View>
                     <ScrollView onScroll={e => { this.searchBackground(e) }}>
                         <Banner banner={this.props.data.data.advs} />
@@ -105,7 +105,6 @@ class Home extends Component {
                                     <Text>签到积分</Text>
                                 </View>
                             </TouchableOpacity>
-
                         </View>
                         <FlatList
                             data={this.props.data.data.banners}
@@ -116,7 +115,7 @@ class Home extends Component {
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Image
                             source={require('../images/hotdot.jpg')}
-                            style={{width:40,height:30}}
+                            style={{width:60,height:30,marginRight:10}}
                             />
                             <Icon
                             name={'volume-up'}

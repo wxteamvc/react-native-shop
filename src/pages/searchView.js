@@ -18,8 +18,8 @@ export default class Serach extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', height: 40 }}>
-                    <TouchableOpacity style={{ flex: 0.15 }} 
-                     onPress={()=>this.props.navigation.navigate('Home')}
+                    <TouchableOpacity style={{ flex: 0.15,alignItems: 'center', justifyContent: 'center'}} 
+                     onPress={()=>this.props.navigation.navigate(this.props.navigation.state.params.back)}
                     >
                         <Icon name={'reply-all'} size={25} color='#fff' />
                     </TouchableOpacity>
