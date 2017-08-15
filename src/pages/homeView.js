@@ -63,13 +63,45 @@ class Home extends Component{
     render(){
         if (this.props.data.status=='success'){
              return (
-                <View style={{flex:1}}>
+                <View style={{flex:1,backgroundColor:'#fff'}}>
                     <View style={[this.state.searchStyle,{position:'absolute',top:0,left:0,zIndex:100,width:ScreenWidth,height:40,justifyContent:'center'}]}>
                     <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'}/>
                     </View> 
                     <ScrollView onScroll={e=>{this.searchBackground(e)}}>
                         <Banner banner={this.props.data.data.advs} />
-                          <View style={{height:50}}></View>
+                          <View style={{height:80,flexDirection:'row',alignItems:'center'}}>
+                              <TouchableOpacity  style={{flex:0.2}}>
+                                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                                    <Image source={require('../images/my.png')} style={{width:50,height:50}}></Image>
+                                    <Text>个人中心</Text>
+                                </View>
+                               </TouchableOpacity>
+                               <TouchableOpacity  style={{flex:0.2}}>
+                                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                                    <Image source={require('../images/kf.png')} style={{width:50,height:50}}></Image>
+                                    <Text>在线客服</Text>
+                                </View>
+                               </TouchableOpacity>   
+                               <TouchableOpacity  style={{flex:0.2}}>
+                                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                                    <Image source={require('../images/yh.png')} style={{width:50,height:50}}></Image>
+                                    <Text>优惠券</Text>
+                                </View>
+                               </TouchableOpacity>   
+                               <TouchableOpacity  style={{flex:0.2}}>
+                                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                                    <Image source={require('../images/cj.png')} style={{width:50,height:50}}></Image>
+                                    <Text>免费抽奖</Text>
+                                </View>
+                               </TouchableOpacity>   
+                               <TouchableOpacity  style={{flex:0.2}}>
+                                <View style={{alignItems: 'center',justifyContent:'center'}}>
+                                    <Image source={require('../images/qd.png')} style={{width:50,height:50}}></Image>
+                                    <Text>签到积分</Text>
+                                </View>
+                               </TouchableOpacity>        
+     
+                          </View>
                             <FlatList
                             data={this.props.data.data.banners}
                             renderItem={this._event}
