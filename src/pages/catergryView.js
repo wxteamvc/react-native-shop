@@ -100,21 +100,21 @@ export default class Catergry extends Component{
     }
     _rightList(){
          var catid = this.state.selectedBarId;
-         var GoodsList = this.state.goodsList[catid];
-         var GoodsArr = [];
-         for(let i = 0;i<GoodsList.length;i++){
-            GoodsArr.push(
-                <TouchableOpacity key={i}>
-                    <View style={{flexDirection:'column'}}>
-                        <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80}}/>
-                        <Text>{GoodsList[i].name}</Text>
-                    </View>
-                </TouchableOpacity>
-            )
-         }
+        //  var GoodsList = this.state.goodsList[catid];
+        //  var GoodsArr = [];
+        //  for(let i = 0;i<GoodsList.length;i++){
+        //     GoodsArr.push(
+        //         <TouchableOpacity key={i}>
+        //             <View style={{flexDirection:'column'}}>
+        //                 <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80}}/>
+        //                 <Text>{GoodsList[i].name}</Text>
+        //             </View>
+        //         </TouchableOpacity>
+        //     )
+        //  }
         return(
             <View style={{flex:3,flexDirection:'row',backgroundColor:'white'}}>
-                {GoodsArr}
+                {/* {GoodsArr} */}
             </View>
         );
     }
