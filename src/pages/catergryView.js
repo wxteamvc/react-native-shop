@@ -12,58 +12,49 @@ import { connect } from 'react-redux';
 import {getCatInfo} from '../actions/initAction';
 import Goods from '../pages/goodsView';
 import Icon from 'react-native-vector-icons/FontAwesome';
+var {height, width} = require('Dimensions').get('window');
  class Catergry extends Component{
     constructor(...props){
         super(...props);
-        // this.state={
-        //     leftBarList:{},
-        //     selectedBar:0,
-        //     selectedBarId:null,
-        //     goodsList:{}
-        // }
+        this.state={
+            selectedBar:0,
+            selectedBarId:null
+        }
     }
     componentDidMount(){
         this.props.dispatch(getCatInfo());
+        
     }
-    render(){
-        alert(this.props.data.data)
+    componentWillReceiveProps(nextProps){
+        if (this.props.data.status=="success"){
+            this.setState({
+                selectedBarId:this.props.data.data.parent[0][0].id
+            }) 
+        }
+    }
+    render(){               
         if(this.props.data.status=='success'){
-              return (
-            <View style={{flex:1}}>
-                {/* 顶部搜索 */}
-                {this._search()}
+            return (
+                <View style={{flex:1}}>
+                    {/* 顶部搜索 */}
+                    {this._search()}
 
-                <View style={{flex:13,flexDirection:'row'}}>
-                    {/* 左边导航 */}
-                    {/* {this._leftBar()} */}
-                    {/* 右边列表 */}
-                     {/* {this._rightList()}  */}
+                    <View style={{flex:13,flexDirection:'row'}}>
+                        {/* 左边导航 */}
+                        {this._leftBar()}  
+                        {/* 右边列表 */}
+                         {this._rightList()}  
+                    </View>
                 </View>
-            </View>
-        );
+            );
         }else{
             return(
-            <View><Text>loading</Text></View>
+                <View><Text>loading</Text></View>
             )
         }
        
     }
 
-    
-    _getCatList(){
-         fetch('http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=shop.category&mid=0&app=1')
-        .then((response) => response.json())
-        .then((responseJson) => {
-           this.setState({
-               leftBarList:responseJson.parent[0],
-               leftBarListId:responseJson.parent[0][0].id,
-               goodsList:responseJson.children
-            })
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
     _search(){
         return(
             <View style={{flex:1,flexDirection:'row',marginTop:5,marginBottom:5}}>
@@ -88,43 +79,62 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     }
 
     _leftBar(){
-        var leftBarList = this.state.leftBarList;
-        var leftBarArr=[];
-        for(let i=0;i<leftBarList.length;i++){
-            leftBarArr.push(
-                <TouchableOpacity key={i} onPress={()=>{this.setState({selectedBar:i,selectedBarId:leftBarList[i].id})}}>
-                    <View style={{flexDirection:'row',backgroundColor:this.state.selectedBar==i?'white':'transparent'}}>
-                        <View style={{flex:1,backgroundColor:this.state.selectedBar==i?'red':'transparent'}}></View>
-                        <View style={{flex:50,padding:5,alignItems:'center'}}><Text style={{fontSize:18}}>{leftBarList[i].name}</Text></View>
-                    </View>
-                </TouchableOpacity>
+        if(this.props.data.data.parent==undefined){
+            return(
+                <View><Text>loading</Text></View>
             )
-        };
-        return(
-            <View style={{flex:1,flexDirection:'column'}}>
-                {leftBarArr}
-            </View>
-        );
+        }else{
+            // this.setState({
+            //     selectedBarId:this.props.data.selectedBarId
+            // });
+            var leftBarList = this.props.data.data.parent[0];
+            var leftBarArr=[];
+            for(let i=0;i<leftBarList.length;i++){
+                leftBarArr.push(
+                    <TouchableOpacity key={i} onPress={()=>{this.setState({selectedBar:i,selectedBarId:leftBarList[i].id})}}>
+                        <View style={{flexDirection:'row',backgroundColor:this.state.selectedBar==i?'white':'transparent'}}>
+                            <View style={{flex:1,backgroundColor:this.state.selectedBar==i?'red':'transparent'}}></View>
+                            <View style={{flex:50,padding:5,alignItems:'center'}}><Text style={{fontSize:18}}>{leftBarList[i].name}</Text></View>
+                        </View>
+                    </TouchableOpacity>
+                )
+            };
+            return(
+                <View style={{flex:1,flexDirection:'column'}}>
+                    {leftBarArr}
+                </View>
+            );
+        }
+        
     }
     _rightList(){
-         var catid = this.state.selectedBarId;
-        //  var GoodsList = this.state.goodsList[catid];
-        //  var GoodsArr = [];
-        //  for(let i = 0;i<GoodsList.length;i++){
-        //     GoodsArr.push(
-        //         <TouchableOpacity key={i}>
-        //             <View style={{flexDirection:'column'}}>
-        //                 <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80}}/>
-        //                 <Text>{GoodsList[i].name}</Text>
-        //             </View>
-        //         </TouchableOpacity>
-        //     )
-        //  }
-        return(
-            <View style={{flex:3,flexDirection:'row',backgroundColor:'white'}}>
-                {/* {GoodsArr} */}
-            </View>
-        );
+        if(this.state.selectedBarId){
+            var catid = this.state.selectedBarId;
+            var GoodsList = this.props.data.data.children[catid];
+            var GoodsArr = [];
+            for(let i = 0;i<GoodsList.length;i++){
+                GoodsArr.push(
+                    <TouchableOpacity key={i}>
+                        <View style={{flexDirection:'column',width:width*0.75/3,alignItems:'center',marginTop:20}}>
+                            <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80,borderRadius:width*0.75/3}}/>
+                            <Text>{GoodsList[i].name}</Text>
+                        </View>
+                    </TouchableOpacity>
+                )
+            }
+            return(
+                <View style={{flex:3,flexDirection:'row',backgroundColor:'white'}}>
+                    {GoodsArr} 
+                </View>
+            );
+        }else{
+            return(
+                <View style={{flex:3,flexDirection:'row',backgroundColor:'white'}}>
+                    <Text>loading</Text>
+                </View>
+            )
+        }
+         
     }
     
 }
