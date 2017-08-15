@@ -14,7 +14,7 @@ class Search extends Component{
                 <TouchableOpacity style={styles.left}>
                     <Text style={{textAlign:'center',color:'#fff'}}>{this.props.lbtn}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.conter,{height:this.props.h}]} onPress={()=>this.props.navigate.navigate('Search')} >
+                <TouchableOpacity style={[styles.conter,{height:this.props.h}]} onPress={()=>this.props.navigate.navigate('Search',{back:this.props.page})} >
                       <Icon name={'search'}
                       size={16}
                       style={{marginRight:20}}
