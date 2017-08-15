@@ -39,7 +39,7 @@ var {height, width} = require('Dimensions').get('window');
                 <View style={{flex:1}}>
                     {/* 顶部搜索 */}
                     <View style={{ backgroundColor:'red', width: width, height: 40, justifyContent: 'center' }}>
-                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Catergry'}/>
+                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'SearchCat'}/>
                     </View>
 
                     <View style={{flex:13,flexDirection:'row'}}>

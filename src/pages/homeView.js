@@ -70,7 +70,7 @@ class Home extends Component {
             return (
                 <View style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={[this.state.searchStyle, { position: 'absolute', top: 0, left: 0, zIndex: 100, width: ScreenWidth, height: 40, justifyContent: 'center' }]}>
-                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Home'} />
+                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Search'} />
                     </View>
                     <ScrollView onScroll={e => { this.searchBackground(e) }}>
                         <Banner banner={this.props.data.data.advs} />
