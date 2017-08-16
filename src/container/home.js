@@ -21,7 +21,7 @@ const HomeStack = StackNavigator({
         tabBarVisible: false,
       },
     },
-    Ad: { 
+    Ad:{ 
       screen:Ad,
       navigationOptions: {
         // header:null
