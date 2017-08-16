@@ -7,10 +7,8 @@ export default function getGoodsListReducer(state = initialState, action) {
     switch (action.type) {
         case Types.GET_GOODS:
             return Object.assign({}, state, {
-                goodsList: {
-                    status: 'success',
-                    data: action.data,
-                }
+                status: 'success',
+                data: action.data,
             });
         default:
             return state;
