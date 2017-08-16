@@ -49,7 +49,10 @@ class Goods extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(search(this.props.navigation.state.params.search));
+        this.setState(Object.assign(
+            this.state.search,this.props.navigation.state.params.search
+        ))
+        this.props.dispatch(search(this.state.search));
     }
 
     render() {
@@ -208,7 +211,7 @@ class Goods extends Component {
                     <TouchableOpacity onPress={
                         () => {
                             this.setState({ orderBy: 'default' });
-                            this.props.dispatch(search(this.props.navigation.state.params.search));
+                            this.props.dispatch(search(this.state.search));
                         }
                     }>
                         <Text style={{ color: this.state.orderBy == 'default' ? 'red' : null, fontSize: 16 }}>综合</Text>
@@ -220,7 +223,7 @@ class Goods extends Component {
                             this.setState({ orderBy: 'sale' });
                             this.props.dispatch(search(
                                 Object.assign(
-                                    this.props.navigation.state.params.search,
+                                    this.state.search,
                                     { order: 'sales', by: 'desc' }
                                 )
                             ));
@@ -257,11 +260,11 @@ class Goods extends Component {
 
     //价格升降图标
     _iconUpDown() {
-        if (this.state.priceOrder == 'up' && this.state.orderBy == 'price') {
+        if (this.state.priceOrder == 'down' && this.state.orderBy == 'price') {
             return (
                 <Text style={{ color: 'red', fontSize: 10, height: 11 }}>  ▲</Text>
             )
-        } else if (this.state.priceOrder == 'down' && this.state.orderBy == 'price') {
+        } else if (this.state.priceOrder == 'up' && this.state.orderBy == 'price') {
             return (
                 <Text style={{ color: 'red', fontSize: 10, height: 11 }}>  ▼</Text>
             )
@@ -270,73 +273,39 @@ class Goods extends Component {
 
     //价格升降排序
     _priceOrder() {
-        if (this.state.orderBy != 'price') {
-            if (this.state.priceOrder == null) {
-                this.setState({
-                    orderBy: 'price',
-                    priceOrder: 'up'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'desc' }
-                    )
-                ));
-            } else if (this.state.priceOrder == 'up') {
-                this.setState({
-                    orderBy: 'price',
-                    priceOrder: 'down'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'asc' }
-                    )
-                ));
-            } else {
-                this.setState({
-                    orderBy: 'price',
-                    priceOrder: 'up'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'desc' }
-                    )
-                ));
-            }
+        if (this.state.priceOrder == null) {
+            this.setState({
+                orderBy: 'price',
+                priceOrder: 'up'
+            });
+            this.props.dispatch(search(
+                Object.assign(
+                    this.state.search,
+                    { order: 'marketprice', by: 'desc' }
+                )
+            ));
+        } else if (this.state.priceOrder == 'up') {
+            this.setState({
+                orderBy: 'price',
+                priceOrder: 'down'
+            });
+            this.props.dispatch(search(
+                Object.assign(
+                    this.state.search,
+                    { order: 'marketprice', by: 'asc' }
+                )
+            ));
         } else {
-            if (this.state.priceOrder == null) {
-                this.setState({
-                    priceOrder: 'up'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'desc' }
-                    )
-                ));
-            } else if (this.state.priceOrder == 'up') {
-                this.setState({
-                    priceOrder: 'down'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'asc' }
-                    )
-                ));
-            } else {
-                this.setState({
-                    priceOrder: 'up'
-                });
-                this.props.dispatch(search(
-                    Object.assign(
-                        this.props.navigation.state.params.search,
-                        { order: 'marketprice', by: 'desc' }
-                    )
-                ));
-            }
+            this.setState({
+                orderBy: 'price',
+                priceOrder: 'up'
+            });
+            this.props.dispatch(search(
+                Object.assign(
+                    this.state.search,
+                    { order: 'marketprice', by: 'desc' }
+                )
+            ));
         }
     }
 
