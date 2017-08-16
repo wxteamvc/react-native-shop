@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
 import Init from './initReducer';
-import getGoodsList from './getGoodsListReducer';
+import GoodsList from './goodsListReducer';
 import { History } from './historyReducer';
 
 const rootReducer = combineReducers({
   Init,
-  getGoodsList,
-  History
-})
+  GoodsLis  History})
 
 export default rootReducer;
