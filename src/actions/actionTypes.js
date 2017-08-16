@@ -6,3 +6,5 @@ export const INIT_DONE = 'INIT_DONE';
 export const INIT_CAT_DOING = 'INIT_CAT_DOING';
 //分类加载完成
 export const INIT_CAT_DONE = 'INIT_CAT_DONE';
+//加载商品列表
+export const GET_GOODS = 'GET_GOODS';

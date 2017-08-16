@@ -39,7 +39,7 @@ var {height, width} = require('Dimensions').get('window');
                 <View style={{flex:1}}>
                     {/* 顶部搜索 */}
                     <View style={{ backgroundColor:'red', width: width, height: 40, justifyContent: 'center' }}>
-                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'SearchCat'}/>
+                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Search'}/>
                     </View>
 
                     <View style={{flex:13,flexDirection:'row'}}>
@@ -117,7 +117,7 @@ var {height, width} = require('Dimensions').get('window');
             var GoodsArr = [];
             for(let i = 0;i<GoodsList.length;i++){
                 GoodsArr.push(
-                    <TouchableOpacity key={i}>
+                    <TouchableOpacity key={i} onPress={()=>{this.props.navigation.navigate('Goods',{catId:GoodsList[i].id})}}>
                         <View style={{flexDirection:'column',width:width*0.75/3,alignItems:'center',marginTop:20}}>
                             <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80,borderRadius:width*0.75/3}}/>
                             <Text>{GoodsList[i].name}</Text>
