@@ -69,7 +69,9 @@ class Goods extends Component{
                         </View>
                     </View>
                     <View>
-                        <View style={{padding:5}}><Text style={{textAlign:'center',borderTopWidth:1,borderBottomWidth:1,borderColor}}>选择分类</Text></View>
+                        <View style={{padding:5}}>
+                            <Text style={{textAlign:'center',borderTopWidth:1,borderBottomWidth:1,borderColor:'#ccc',padding:5}}>选择分类</Text>
+                        </View>
                     </View>
                 </View>
             )
@@ -85,7 +87,7 @@ class Goods extends Component{
                     <TouchableOpacity onPress={
                         ()=>{
                             this.setState({orderBy:'default'});
-                            this.props.dispatch(search({cate:this.props.navigation.state.params.catId}));
+                            this.props.dispatch(search(this.props.navigation.state.params.search));
                             }
                         }>
                         <Text style={{color:this.state.orderBy=='default'?'red':null}}>综合</Text>
@@ -95,7 +97,12 @@ class Goods extends Component{
                     <TouchableOpacity onPress={
                         ()=>{
                             this.setState({orderBy:'sale'});
-                            this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'sales',by:'desc'}));
+                            this.props.dispatch(search(
+                                Object.assign(
+                                    this.props.navigation.state.params.search,
+                                    {order:'sales',by:'desc'}
+                                )
+                            ));
                             }
                         }>
                         <Text style={{color:this.state.orderBy=='sale'?'red':null}}>销量</Text>
@@ -132,36 +139,66 @@ class Goods extends Component{
                     orderBy:'price',
                     priceOrder:'up'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'desc'}
+                    )
+                ));
             }else if(this.state.priceOrder=='up'){
                 this.setState({
                     orderBy:'price',
                     priceOrder:'down'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'asc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'asc'}
+                    )
+                ));
             }else{
                 this.setState({
                     orderBy:'price',
                     priceOrder:'up'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'desc'}
+                    )
+                ));
             }
         }else{
             if(this.state.priceOrder==null){
                 this.setState({
                     priceOrder:'up'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'desc'}
+                    )
+                ));
             }else if(this.state.priceOrder=='up'){
                 this.setState({
                     priceOrder:'down'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'asc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'asc'}
+                    )
+                ));
             }else{
                 this.setState({
                     priceOrder:'up'
                 });
-                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
+                this.props.dispatch(search(
+                    Object.assign(
+                        this.props.navigation.state.params.search,
+                        {order:'marketprice',by:'desc'}
+                    )
+                ));
             }
         }
     }
