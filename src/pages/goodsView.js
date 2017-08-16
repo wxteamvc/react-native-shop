@@ -8,10 +8,13 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
-import {getGoodsList} from '../actions/getGoodsListAction';
+import {search} from '../actions/searchAction';
 import { connect } from 'react-redux';
+import { ScreenWidth } from '../common/global';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class Goods extends Component{
@@ -26,14 +29,14 @@ class Goods extends Component{
 
     componentDidMount(){
         // console.log(this.props)
-        this.props.navigation.dispatch(getGoodsList(this.props.navigation.state.params.catId));
+        this.props.dispatch(search({cate:this.props.navigation.state.params.catId}));
     }
 
     render(){
         return (
             <View>
                 {this._orderBy()}
-                <Text>商品列表页</Text>
+                {this._goodsList()}
             </View>
         );
     }
@@ -108,15 +111,52 @@ class Goods extends Component{
                 })
             }
         }
+    }
+
+    // 商品列表视图
+    _goodsList(){
+        let goodsList=this.props.goodsList;
+        if(goodsList.status=='success'){
+            var goodsListObj=goodsList.data.result.list;
+            var goodsListArr=[];
+            for(let i=0;i<goodsListObj.length;i++){
+                goodsListArr.push(
+                    <View key={i} style={{width:ScreenWidth/2}}>
+                        <View style={{marginTop:5,marginLeft:5,marginBottom:5}}><Image source={{uri:goodsListObj[i].thumb}} style={{width:ScreenWidth/2-10,height:ScreenWidth/2-5}}/></View>
+                        <View style={{padding:5}}>
+                            <View>
+                                <Text numberOfLines={1}>{goodsListObj[i].title}</Text>
+                            </View>
+                            <View style={{flexDirection:'row',paddingTop:10}}>
+                                <View style={{flex:5}}>
+                                    <Text style={{color:'red'}}>￥{goodsListObj[i].marketprice}</Text>
+                                </View>
+                                <View style={{flex:1}}>
+                                    <View style={{width:24,height:24,backgroundColor:'red',alignItems:'center',justifyContent:'center',borderRadius:10,padding:2}}>
+                                        <TouchableOpacity>
+                                            <Icon name="shopping-cart" size={15} color={'#fff'}/>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                                
+                            </View>
+
+                        </View>
+                    </View>
+                )
+            }
+
+        }
         
+        return goodsListArr;
         
     }
 }
 
 function  mapStateToProps(state){
     return{
-        data:state.getGoodsList
+        goodsList:state.GoodsList
     }
 }
 
-export default  connect(mapStateToProps)(Goods);
+export default connect(mapStateToProps)(Goods);

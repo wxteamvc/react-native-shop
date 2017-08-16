@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import Init from './initReducer';
-import getGoodsList from './getGoodsListReducer';
+import GoodsList from './goodsListReducer';
 
 const rootReducer = combineReducers({
   Init,
-  getGoodsList
+  GoodsList
 })
 
 export default rootReducer;
