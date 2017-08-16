@@ -8,3 +8,7 @@ export const INIT_CAT_DOING = 'INIT_CAT_DOING';
 export const INIT_CAT_DONE = 'INIT_CAT_DONE';
 //加载商品列表
 export const GET_GOODS = 'GET_GOODS';
+//添加搜索历史
+export const SEARCH_HISTORY = 'SEARCH_HISTORY';
+//清空搜索历史
+export const CLEAR = 'CLEAR';
