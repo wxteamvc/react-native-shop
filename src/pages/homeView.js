@@ -12,7 +12,7 @@ import {
     FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { DOMAIN, ScreenWidth } from '../common/global';
+import { DOMAIN, ScreenWidth} from '../common/global';
 import { connect } from 'react-redux'
 import Banner from '../component/banner';
 import { getinfo } from '../actions/initAction'
@@ -30,8 +30,11 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        if(!this.props.data.hasInfo)
-           this.props.dispatch(getinfo())  
+        if (!this.props.data.hasInfo) {
+            this.props.dispatch(getinfo())
+        }
+
+
     }
     _event = ({ item }) => {
         return (
@@ -41,28 +44,56 @@ class Home extends Component {
     _hotList({ item }) {
         return (<View style={{ alignItems: 'center', borderRightColor: '#ccc', borderRightWidth: 1 }}>
             <Image source={{ uri: DOMAIN + item.thumb }} style={{ width: ScreenWidth / 3 - 1, height: ScreenWidth / 3, padding: 30 }}></Image>
-            {/* <Text style={{color:'#fff',backgroundColor:'#660099',padding:2,position:'absolute',top:width/3-25,left:0}}>{item.type}</Text> */}
-            <Text style={{ color: 'red', fontSize: 18, fontWeight: 'bold' }}>{item.productprice}</Text>
+            <Text style={{ color: 'red', fontSize: 18, fontWeight: 'bold' }}>{item.minprice}</Text>
             <Text style={{ textDecorationLine: 'line-through' }}>{item.marketprice}</Text>
         </View>)
 
     }
+
+    _swiper() {
+        let notice = this.props.data.data.notices;
+        var hot = [];
+        for (var i = 0; i < notice.length; i++) {
+            hot.push(
+                <View key={i} style={{ flex: 1, justifyContent: 'center', paddingLeft: 20 }}>
+                    <Text style={{ flex: 0.4, color: '#000' }}>{notice[i].title}</Text>
+                </View>
+            )
+        }
+        return (
+            <Swiper
+                dotStyle={{ height: 0, }}
+                activeDotStyle={{ height: 0, }}
+                height={50}
+                showsButtons={false}
+                autoplay={true}
+            >
+                {hot}
+            </Swiper>
+        )
+    }
+
     searchBackground(e) {
         if (e.nativeEvent.contentOffset.y > 170) {
-            this.setState({
-                searchStyle: {
-                    backgroundColor: 'red',
-                    opacity: 0.6
-                }
-            })
-        } else {
-            this.setState({
-                searchStyle: {
-                    backgroundColor: '#ccc',
-                    opacity: 0.4
-                },
+            if (this.state.searchStyle.backgroundColor != 'red') {
+                this.setState({
+                    searchStyle: {
+                        backgroundColor: 'red',
+                        opacity: 0.6
+                    }
+                })
+            }
 
-            })
+        } else {
+            if (this.state.searchStyle.backgroundColor != '#ccc') {
+                this.setState({
+                    searchStyle: {
+                        backgroundColor: '#ccc',
+                        opacity: 0.4
+                    },
+
+                })
+            }
         }
     }
     render() {
@@ -112,18 +143,18 @@ class Home extends Component {
                             keyExtractor={(item, index) => index}
                         >
                         </FlatList>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 50 }}>
                             <Image
-                            source={require('../images/hotdot.jpg')}
-                            style={{width:60,height:30,marginRight:10}}
+                                source={require('../images/hotdot.jpg')}
+                                style={{ width: 60, height: 25, marginLeft: 10, marginRight: 10 }}
                             />
                             <Icon
-                            name={'volume-up'}
-                            size={16}
-                            color={'red'}
+                                name={'volume-up'}
+                                size={20}
+                                color={'red'}
                             />
-                            <Text></Text>
-                            </View>
+                            {this._swiper()}
+                        </View>
                         <FlatList
                             data={this.props.data.data.recommands}
                             horizontal={true}
