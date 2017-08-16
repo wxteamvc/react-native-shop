@@ -24,4 +24,27 @@ function goodsList(type, data = {}) {
     }
 }
 
+export function searchHistory(keyWord) {
+    return (
+        dispatch => {
+            dispatch(saveHistory(Types.SEARCH_HISTORY,keyWord))
+        }
+    )
+}
+
+export function clear() {
+    return (
+        dispatch => {
+            dispatch(saveHistory(Types.CLEAR))
+        }
+    )
+}
+
+function saveHistory(type,keyWord = []) {
+    return {
+        type:type,
+        keyWord:keyWord,
+    }
+}
+
 

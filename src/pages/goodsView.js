@@ -9,7 +9,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import {search} from '../actions/searchAction';
 import { connect } from 'react-redux';
@@ -23,7 +24,8 @@ class Goods extends Component{
         super(...props)
         this.state={
             orderBy:'default',  //默认综合排序default;另外销量：sale;价格：price;筛选：filter
-            priceOrder:null //up价格升，down价格降
+            priceOrder:null,    //up价格升，down价格降
+            filterShow:false,    //筛选框显示状态
         }
     }
 
@@ -37,21 +39,62 @@ class Goods extends Component{
             <View>
                 {this._orderBy()}
                 {this._goodsList()}
+                {this._filterView()}
             </View>
         );
+    }
+
+    _filterView(){
+        if(this.state.modelShow==true && this.state.orderBy=='filter'){
+            return (
+                <View style={{width:ScreenWidth,height:300,position:'absolute',backgroundColor:'#fff',top:45}}>
+                    <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>推荐商品</Text></TouchableOpacity>
+                        </View>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>新品上市</Text></TouchableOpacity>
+                        </View>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>热卖商品</Text></TouchableOpacity>
+                        </View>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>促销商品</Text></TouchableOpacity>
+                        </View>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>卖家包邮s</Text></TouchableOpacity>
+                        </View>
+                        <View style={{width:ScreenWidth/3,padding:5}}>
+                            <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>限时抢购</Text></TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            )
+        }
     }
 
     // 排序视图 
     _orderBy(){
         return(
+            
             <View style={{flexDirection:'row',backgroundColor:'#fff',height:45,alignItems:'center',borderBottomWidth:1}}>
                 <View style={{flex:1,alignItems:'center',borderRightWidth:1}}>
-                    <TouchableOpacity onPress={()=>this.setState({orderBy:'default'})}>
+                    <TouchableOpacity onPress={
+                        ()=>{
+                            this.setState({orderBy:'default'});
+                            this.props.dispatch(search({cate:this.props.navigation.state.params.catId}));
+                            }
+                        }>
                         <Text style={{color:this.state.orderBy=='default'?'red':null}}>综合</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:1,alignItems:'center',borderRightWidth:1}}>
-                    <TouchableOpacity onPress={()=>this.setState({orderBy:'sale'})}>
+                    <TouchableOpacity onPress={
+                        ()=>{
+                            this.setState({orderBy:'sale'});
+                            this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'sales',by:'desc'}));
+                            }
+                        }>
                         <Text style={{color:this.state.orderBy=='sale'?'red':null}}>销量</Text>
                     </TouchableOpacity>
                 </View>
@@ -69,11 +112,12 @@ class Goods extends Component{
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:1,alignItems:'center',borderLeftWidth:1}}>
-                    <TouchableOpacity onPress={()=>this.setState({orderBy:'filter'})}>
+                    <TouchableOpacity onPress={()=>this.setState({orderBy:'filter',modelShow:true})}>
                         <Text style={{color:this.state.orderBy=='filter'?'red':null}}>筛选</Text>
                     </TouchableOpacity>
                 </View>
             </View>
+            
         )
     }
 
@@ -84,31 +128,37 @@ class Goods extends Component{
                 this.setState({
                     orderBy:'price',
                     priceOrder:'up'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
             }else if(this.state.priceOrder=='up'){
                 this.setState({
                     orderBy:'price',
                     priceOrder:'down'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'asc'}));
             }else{
                 this.setState({
                     orderBy:'price',
                     priceOrder:'up'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
             }
         }else{
             if(this.state.priceOrder==null){
                 this.setState({
                     priceOrder:'up'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
             }else if(this.state.priceOrder=='up'){
                 this.setState({
                     priceOrder:'down'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'asc'}));
             }else{
                 this.setState({
                     priceOrder:'up'
-                })
+                });
+                this.props.dispatch(search({cate:this.props.navigation.state.params.catId,order:'marketprice',by:'desc'}));
             }
         }
     }
@@ -148,7 +198,11 @@ class Goods extends Component{
 
         }
         
-        return goodsListArr;
+        return (
+            <ScrollView>
+                <View style={{flexDirection:'row'}}>{goodsListArr}</View>
+            </ScrollView>
+        )
         
     }
 }
