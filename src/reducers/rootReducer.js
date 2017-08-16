@@ -5,6 +5,8 @@ import { History } from './historyReducer';
 
 const rootReducer = combineReducers({
   Init,
-  GoodsLis  History})
+  GoodsList,
+  History
+})
 
 export default rootReducer;
