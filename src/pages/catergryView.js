@@ -24,7 +24,6 @@ var {height, width} = require('Dimensions').get('window');
     }
     componentDidMount(){
         this.props.dispatch(getCatInfo());
-        
     }
     componentWillReceiveProps(nextProps){
         if (this.props.data.status=="success"){
