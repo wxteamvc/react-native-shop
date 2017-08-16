@@ -50,7 +50,7 @@ class Goods extends Component {
 
     componentDidMount() {
         this.setState(Object.assign(
-            this.state.search,this.props.navigation.state.params.search
+            this.state.search, this.props.navigation.state.params.search
         ))
         this.props.dispatch(search(this.state.search));
     }
@@ -206,8 +206,8 @@ class Goods extends Component {
     _orderBy() {
         return (
 
-            <View style={{ flexDirection: 'row', backgroundColor: '#fff', height: 45, alignItems: 'center', borderBottomWidth: 1 }}>
-                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1 }}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#fff', height: 45, alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc' }}>
+                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
                         () => {
                             this.setState({ orderBy: 'default' });
@@ -217,7 +217,7 @@ class Goods extends Component {
                         <Text style={{ color: this.state.orderBy == 'default' ? 'red' : null, fontSize: 16 }}>综合</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1 }}>
+                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
                         () => {
                             this.setState({ orderBy: 'sale' });
@@ -244,7 +244,7 @@ class Goods extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', borderLeftWidth: 1 }}>
+                <View style={{ flex: 1, alignItems: 'center', borderLeftWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
                         () => {
                             this.setState({ orderBy: 'filter', filterShow: true });
@@ -318,10 +318,16 @@ class Goods extends Component {
             for (let i = 0; i < goodsListObj.length; i++) {
                 goodsListArr.push(
                     <View key={i} style={{ width: ScreenWidth / 2 }}>
-                        <View style={{ marginTop: 5, marginLeft: 5, marginBottom: 5 }}><Image source={{ uri: goodsListObj[i].thumb }} style={{ width: ScreenWidth / 2 - 10, height: ScreenWidth / 2 - 5 }} /></View>
+                        <View style={{ marginTop: 5, marginLeft: 5, marginBottom: 5 }}>
+                            <TouchableOpacity>
+                                <Image source={{ uri: goodsListObj[i].thumb }} style={{ width: ScreenWidth / 2 - 10, height: ScreenWidth / 2 - 5 }} />
+                            </TouchableOpacity>
+                        </View>
                         <View style={{ padding: 5 }}>
                             <View>
-                                <Text numberOfLines={1}>{goodsListObj[i].title}</Text>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}>{goodsListObj[i].title}</Text>
+                                </TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                                 <View style={{ flex: 5 }}>
