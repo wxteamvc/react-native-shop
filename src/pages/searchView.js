@@ -9,6 +9,7 @@ import {
     StatusBar,
     TouchableOpacity,
     TextInput,
+    ToastAndroid,
 } from 'react-native';
 import { DOMAIN, ScreenWidth, ScreenHeight } from '../common/global';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -49,21 +50,24 @@ class Serach extends Component {
         })
     }
 
-    jump() {
+    jump=()=>{
         if (this.state.hasKeyWord) {
-            this.props.navigation.navigate('Product', { from: 'search', val: this.state.text })
+            this.props.dispatch(searchHistory(this.state.text))     
+            this.props.navigation.navigate('Goods', { search:{keywords:this.state.text}})
         } else {
-            alert('请输入关键词')
+            ToastAndroid.show('请输入要搜索的内容', ToastAndroid.SHORT)
         }
     }
 
     _history() {
         var content = [];
-        for (var i = 0; i < this.props.history.keyWords.length; i++) {
+        for (let i = 0; i < this.props.history.keyWords.length; i++) {
             content.push(
-                <View key={i} style={{ borderBottomWidth: 1, borderColor: '#ccc', paddingBottom: 10, paddingTop: 10 }}>
+                <TouchableOpacity key={i} onPress={()=>this.props.navigation.navigate('Goods', { search:{keywords:this.props.history.keyWords[i]}})}>        
+                <View  style={{ borderBottomWidth: 1, borderColor: '#ccc', paddingBottom: 10, paddingTop: 10 }}>
                     <Text style={{ marginLeft: 10 }}>{this.props.history.keyWords[i]}</Text>
                 </View>
+                 </TouchableOpacity>
             )
         }
         return (content)
@@ -113,7 +117,7 @@ class Serach extends Component {
                     >
                     </TextInput>
                     <TouchableOpacity
-                        onPress={() => { this.props.dispatch(searchHistory(this.state.text)) }}
+                        onPress={this.jump}
                         style={{ flex: 0.15, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Icon name={'search'} size={20} color={'#fff'} />
                     </TouchableOpacity>
