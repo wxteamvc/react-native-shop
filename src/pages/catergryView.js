@@ -117,7 +117,7 @@ var {height, width} = require('Dimensions').get('window');
             var GoodsArr = [];
             for(let i = 0;i<GoodsList.length;i++){
                 GoodsArr.push(
-                    <TouchableOpacity key={i} onPress={()=>{this.props.navigation.navigate('Goods',{catId:GoodsList[i].id})}}>
+                    <TouchableOpacity key={i} onPress={()=>{this.props.navigation.navigate('Goods',{search:{cate:GoodsList[i].id}})}}>
                         <View style={{flexDirection:'column',width:width*0.75/3,alignItems:'center',marginTop:20}}>
                             <Image source={{uri:GoodsList[i].thumb}} style={{width:80,height:80,borderRadius:width*0.75/3}}/>
                             <Text>{GoodsList[i].name}</Text>

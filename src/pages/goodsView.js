@@ -31,7 +31,7 @@ class Goods extends Component{
 
     componentDidMount(){
         // console.log(this.props)
-        this.props.dispatch(search({cate:this.props.navigation.state.params.catId}));
+        this.props.dispatch(search(this.props.navigation.state.params.search));
     }
 
     render(){
@@ -67,6 +67,9 @@ class Goods extends Component{
                         <View style={{width:ScreenWidth/3,padding:5}}>
                             <TouchableOpacity><Text style={{borderWidth:1,padding:5,borderColor:'#ccc',borderRadius:10,textAlign:'center'}}>限时抢购</Text></TouchableOpacity>
                         </View>
+                    </View>
+                    <View>
+                        <View style={{padding:5}}><Text style={{textAlign:'center',borderTopWidth:1,borderBottomWidth:1,borderColor}}>选择分类</Text></View>
                     </View>
                 </View>
             )
