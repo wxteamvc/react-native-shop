@@ -16,7 +16,18 @@ export const GET_GOODS = 'GET_GOODS';
 export const SEARCH_HISTORY = 'SEARCH_HISTORY';
 //清空搜索历史
 export const CLEAR = 'CLEAR';
+//登陆
+export const Login = 'Login';//开始获取优惠券
+export const GET_COUPONS_DOING = 'GET_COUPONS_DOING';
+//获取优惠券完成
+export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';<<<<<<< .mine
 //开始获取优惠券
 export const GET_COUPONS_DOING = 'GET_COUPONS_DOING';
 //获取优惠券完成
 export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
+=======
+//登陆
+export const Login = 'Login';
+
+
+>>>>>>> .theirs

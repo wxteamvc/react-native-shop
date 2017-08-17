@@ -2,23 +2,40 @@
 
 
 import React, { Component } from 'react';
-
 import {
   AppRegistry,
-  StyleSheet,
   Text,
   View,
   TouchableOpacity
 } from 'react-native';
+import Login from '../component/login';
+import { connect } from 'react-redux';
 
 
-export default class User extends Component{
+class User extends Component{
+    constructor(...props){
+        super(...props);
+    }
+   
     render(){
-        return (
-            <View>
-                
-                <Text>用户中心</Text>
-            </View>
-        );
+        if(this.props.data.status=='success'){
+            return (
+                <View>
+                    <Text>用户中心</Text>
+                </View>
+            );
+        }else{
+            return (
+                <Login dispatch={this.props.dispatch} />
+            )
+        }
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        data: state.User
+    }
+}
+
+export default connect(mapStateToProps)(User);
