@@ -30,3 +30,6 @@ export function search_url(newData={}) {
     Object.assign(data,newData);
     return 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=goods.get_list&mid=0&keywords='+data.keywords+'&isrecommand='+data.isrecommand+'&ishot='+data.ishot+'&isnew='+data.isnew+'&isdiscount='+data.isdiscount+'&issendfree='+data.issendfree+'&istime='+data.istime+'&cate='+data.cate+'&order='+data.order+'&by='+data.by+'&merchid='+data.merchid+'&page='+data.page+'&_='+data.nowtime;
 }
+
+//登陆请求地址
+export const Login_URL = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.login&mid=0&app=1';
