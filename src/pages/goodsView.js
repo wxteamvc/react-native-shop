@@ -10,7 +10,8 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ScrollView
+    ScrollView,
+    TextInput
 } from 'react-native';
 import { search } from '../actions/searchAction';
 import { getCatInfo } from '../actions/initAction';
@@ -23,13 +24,14 @@ class Goods extends Component {
     constructor(...props) {
         super(...props)
         this.state = {
-            orderBy: 'default',  //默认综合排序default;另外销量：sale;价格：price;筛选：filter
-            priceOrder: null,    //up价格升，down价格降
-            filterShow: false,   //筛选框显示状态
-            leftSelectedBar: null,    //一级分类选中状态
-            leftSelectedBarId: null,   //一级分类id
-            rightSelectedBarId: null,   //二级分类id
-            search: {                   //筛选条件
+            orderBy: 'default',          //默认综合排序default;另外销量：sale;价格：price;筛选：filter
+            priceOrder: null,            //up价格升，down价格降
+            filterShow: false,           //筛选框显示状态
+            leftSelectedBar: null,       //一级分类选中状态
+            leftSelectedBarId: null,     //一级分类id
+            rightSelectedBarId: null,    //二级分类id
+            showType:true,               //显示大图为true,小图为false，默认大图
+            search: {                    //筛选条件
                 keywords: "",
                 isrecommand: "",
                 ishot: "",
@@ -57,6 +59,7 @@ class Goods extends Component {
     render() {
         return (
             <View>
+                {this._search()}
                 {this._orderBy()}
                 {this._goodsList()}
                 {this._filterView()}
@@ -64,15 +67,52 @@ class Goods extends Component {
         );
     }
 
+    _search(){
+        return(
+            <View style={{flexDirection:'row',backgroundColor:'#fff',padding:5,height:51}}>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+                        <Icon name='angle-left' size={30} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{flex:8,paddingLeft:10,paddingRight:10,marginRight:10,flexDirection:'row',alignItems:'center',borderRadius:10,backgroundColor:'#ccc'}}>
+                    <View style={{flex:1}}><Icon name='search' size={20}/></View>
+                    <View style={{flex:12}}>
+                        <TextInput
+                            style={{color:'#666'}}
+                            onChangeText={(text) => this.setState({
+                                search: {
+                                    ...this.state.search,
+                                    keywords: text
+                                }
+                            })}
+                            placeholder ='输入关键字'
+                            underlineColorAndroid="transparent"
+                            returnKeyType='search'
+                            returnKeyLabel='搜索'
+                            onSubmitEditing={()=>this.props.dispatch(search(this.state.search))}
+                        />
+                    </View>
+                </View>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                    <TouchableOpacity onPress={()=>{this.setState({showType:!this.state.showType})}}>
+                        <Icon name={this.state.showType==true?'th-list':'th-large'} size={30} />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
 
     _changeSearch(key) {
         this.setState({
             search: {
                 ...this.state.search,
-                [key]: this.state.search[key] == 1 ? "" : 1
+                [key]: this.state.search[key] == 1 ? "" : 1,
             }
         })
     }
+
     _filterView() {
         if (this.state.filterShow == true && this.state.orderBy == 'filter') {
             return (
@@ -202,7 +242,7 @@ class Goods extends Component {
     // 排序视图 
     _orderBy() {
         return (
-            <View style={{ flexDirection: 'row', backgroundColor: '#fff', height: 45, alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc' }}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#fff', height: 45, alignItems: 'center', borderBottomWidth: 1, borderTopWidth: 1, borderColor: '#ccc' }}>
                 <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
                         () => {
@@ -243,7 +283,10 @@ class Goods extends Component {
                 <View style={{ flex: 1, alignItems: 'center', borderLeftWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
                         () => {
-                            this.setState({ orderBy: 'filter', filterShow: true });
+                            this.setState({ orderBy: 'filter', filterShow: true,search:{
+                                ...this.state.search,
+                                keywords:""
+                            } });
                             this.props.dispatch(getCatInfo())
                         }}>
                         <Text style={{ color: this.state.orderBy == 'filter' ? 'red' : null, fontSize: 16 }}>筛选</Text>

@@ -31,7 +31,7 @@ const HomeStack = StackNavigator({
     Goods: { 
       screen:Goods,
       navigationOptions: {
-        // header:null
+        header:null,
         tabBarVisible: false,
       },
     },  

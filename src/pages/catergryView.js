@@ -56,29 +56,6 @@ class Catergry extends Component {
         }
     }
 
-    // _search(){
-    //     return(
-    //         <View style={{flex:1,flexDirection:'row',marginTop:5,marginBottom:5}}>
-    //             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-    //             <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Home")}}>
-    //                 <Icon name='angle-left' size={40} />
-    //             </TouchableOpacity>
-    //             </View>
-    //             <View style={{flex:8,paddingRight:10,flexDirection:'row',alignItems:'center',borderRadius:10,backgroundColor:'#ccc',paddingLeft:10,marginRight:10}}>
-    //                 <View style={{flex:1}}><Icon name='search' size={25}/></View>
-    //                 <View style={{flex:12}}>
-    //                     <TextInput
-    //                         style={{height: 40,color:'#666'}}
-    //                         //onChangeText={(text) => this.setState({text})}
-    //                         value='输入关键字'
-    //                         underlineColorAndroid="transparent"
-    //                     />
-    //                 </View>
-    //             </View>
-    //         </View>
-    //     )
-    // }
-
     _leftBar() {
         if (this.props.data.data.parent == undefined) {
             return (
