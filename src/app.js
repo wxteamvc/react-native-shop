@@ -21,7 +21,7 @@ const AppTab = TabNavigator({
       navigationOptions:({navigation}) => ({
         tabBarLabel:'首页',  
         tabBarIcon:({focused,tintColor}) => ( 
-           <Icon name="home" size={25} color={tintColor}/>
+           <Icon name="home" size={20} color={tintColor}/>
         )    
        }), 
     },
@@ -30,7 +30,7 @@ const AppTab = TabNavigator({
       navigationOptions:({navigation}) => ({  
         tabBarLabel:'分类',  
         tabBarIcon:({focused,tintColor}) => ( 
-          <Icon name="list" size={25} color={tintColor}/>
+          <Icon name="list" size={20} color={tintColor}/>
         )  
       }),  
     },
@@ -40,7 +40,7 @@ const AppTab = TabNavigator({
       navigationOptions:({navigation}) => ({  
         tabBarLabel:'购物车',  
         tabBarIcon:({focused,tintColor}) => ( 
-           <Icon name="shopping-cart" size={25} color={tintColor}/>
+           <Icon name="shopping-cart" size={20} color={tintColor}/>
         )  
       }),  
     },
@@ -49,7 +49,7 @@ const AppTab = TabNavigator({
       navigationOptions:({navigation}) => ({  
         tabBarLabel:'会员中心',  
         tabBarIcon:({focused,tintColor}) => ( 
-          <Icon name="user-o" size={25} color={tintColor}/>
+          <Icon name="user-o" size={20} color={tintColor}/>
         )  
       }),  
     },    
@@ -71,8 +71,7 @@ const AppTab = TabNavigator({
             height:60
         },
         labelStyle: {
-            fontSize: 15, // 文字大小
-            marginTop:-3
+            marginTop:2
         },
         iconStyle :{
             width:25,
