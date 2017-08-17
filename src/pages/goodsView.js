@@ -247,7 +247,10 @@ class Goods extends Component {
                     <TouchableOpacity onPress={
                         () => {
                             this.setState({ orderBy: 'default' });
-                            this.props.dispatch(search());
+                            this.props.dispatch(search(Object.assign(
+                                    this.state.search,
+                                    { order: '', by: '' }
+                                )));
                         }
                     }>
                         <Text style={{ color: this.state.orderBy == 'default' ? 'red' : null, fontSize: 16 }}>综合</Text>
