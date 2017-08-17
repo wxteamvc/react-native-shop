@@ -14,7 +14,7 @@ import {
     TextInput
 } from 'react-native';
 import { search } from '../actions/searchAction';
-import { getCatInfo } from '../actions/initAction';
+import { getCatInfo } from '../actions/catAction';
 import { connect } from 'react-redux';
 import { ScreenWidth } from '../common/global';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -435,7 +435,7 @@ class Goods extends Component {
 function mapStateToProps(state) {
     return {
         goodsList: state.GoodsList,
-        data: state.Init.catList
+        data: state.ReducerCat.catList
     }
 }
 

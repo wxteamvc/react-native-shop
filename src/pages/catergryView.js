@@ -9,25 +9,14 @@ import {
     Image
 } from 'react-native';
 import { connect } from 'react-redux';
-<<<<<<< .mine
 import {getCatInfo} from '../actions/catAction';
-=======
-import { getCatInfo } from '../actions/initAction';
->>>>>>> .theirs
 import Goods from '../pages/goodsView';
 import Search from '../component/search';
 import Icon from 'react-native-vector-icons/FontAwesome';
-<<<<<<< .mine
 var {height, width} = require('Dimensions').get('window');
 import Loading from '../component/loading'
  class Catergry extends Component{
     constructor(...props){
-=======
-var { height, width } = require('Dimensions').get('window');
-class Catergry extends Component {
-    constructor(...props) {
-
->>>>>>> .theirs
         super(...props);
         this.state = {
             selectedBar: 'isrecommand',
@@ -155,7 +144,9 @@ class Catergry extends Component {
     }
 
 }
-
-        data:state.ReducerCat.catList    }
+function mapStateToProps(state) {
+    return {
+        data:state.ReducerCat.catList    
+    }
 }
 export default connect(mapStateToProps)(Catergry);
