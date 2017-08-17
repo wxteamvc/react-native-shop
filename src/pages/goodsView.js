@@ -18,7 +18,6 @@ import { connect } from 'react-redux';
 import { ScreenWidth } from '../common/global';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 class Goods extends Component {
 
     constructor(...props) {
@@ -148,7 +147,6 @@ class Goods extends Component {
 
     //一级分类列表
     _firstCatList() {
-        // console.log(this.props.data.data.parent)
         if (this.props.data.status == 'success') {
             var firstCatList = this.props.data.data.parent[0];
             var firstCatListArr = [];
@@ -173,7 +171,6 @@ class Goods extends Component {
             }
         }
         return firstCatListArr;
-
     }
 
     //二级分类列表
@@ -205,7 +202,6 @@ class Goods extends Component {
     // 排序视图 
     _orderBy() {
         return (
-
             <View style={{ flexDirection: 'row', backgroundColor: '#fff', height: 45, alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc' }}>
                 <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 1, borderColor: '#ccc' }}>
                     <TouchableOpacity onPress={
@@ -254,7 +250,6 @@ class Goods extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-
         )
     }
 
@@ -340,22 +335,18 @@ class Goods extends Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-
                             </View>
-
                         </View>
                     </View>
                 )
             }
-
         }
 
         return (
             <ScrollView>
-                <View style={{ flexDirection: 'row' }}>{goodsListArr}</View>
+                <View style={{ flexDirection: 'row' ,flexWrap:'wrap'}}>{goodsListArr}</View>
             </ScrollView>
         )
-
     }
 }
 
