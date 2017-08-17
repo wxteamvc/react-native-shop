@@ -114,7 +114,7 @@ class Home extends Component {
                     <ScrollView onScroll={e => { this.searchBackground(e) }}>
                         <Banner banner={this.props.data.data.advs} />
                         <View style={{ height: 80, flexDirection: 'row', alignItems: 'center' }}>
-                            <TouchableOpacity style={{ flex: 0.2 }}>
+                            <TouchableOpacity style={{ flex: 0.2 }} onPress={()=>this.props.navigation.navigate('User')}>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Image source={require('../images/my.png')} style={{ width: 50, height: 50 }}></Image>
                                     <Text>个人中心</Text>
@@ -126,7 +126,7 @@ class Home extends Component {
                                     <Text>在线客服</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ flex: 0.2 }}>
+                            <TouchableOpacity style={{ flex: 0.2 }} onPress={()=>this.props.navigation.navigate('Coupons')}>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Image source={require('../images/yh.png')} style={{ width: 50, height: 50 }}></Image>
                                     <Text>优惠券</Text>
