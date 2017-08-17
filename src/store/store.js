@@ -12,3 +12,5 @@ const store = createStoreWithMiddleware(renders,autoRehydrate());
 persistStore(store,{storage:AsyncStorage});
 
 export default store;
+
+// export default  store = createStoreWithMiddleware(renders);

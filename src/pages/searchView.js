@@ -113,7 +113,10 @@ class Serach extends Component {
                         placeholderTextColor='#000'
                         underlineColorAndroid='transparent'
                         onChangeText={(text) => this.getText(text)}
-                        keyboardType='ascii-capable'
+                        returnKeyType='search'
+                        returnKeyLabel='搜索'
+                        onSubmitEditing={this.jump}
+
                     >
                     </TextInput>
                     <TouchableOpacity
@@ -139,7 +142,7 @@ class Serach extends Component {
 
 function mapStateToProps(state) {
     return {
-        data: state.Init.index,
+        data: state.ReducerIndex.index,
         history: state.History,
     }
 }

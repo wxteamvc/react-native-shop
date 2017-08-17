@@ -9,11 +9,12 @@ import {
   Image
 } from 'react-native';
 import { connect } from 'react-redux';
-import {getCatInfo} from '../actions/initAction';
+import {getCatInfo} from '../actions/catAction';
 import Goods from '../pages/goodsView';
 import Search from '../component/search';
 import Icon from 'react-native-vector-icons/FontAwesome';
 var {height, width} = require('Dimensions').get('window');
+import Loading from '../component/loading'
  class Catergry extends Component{
     constructor(...props){
         super(...props);
@@ -52,7 +53,7 @@ var {height, width} = require('Dimensions').get('window');
             );
         }else{
             return(
-                <View><Text>loading</Text></View>
+                <Loading />
             )
         }
        
@@ -148,7 +149,7 @@ const style = StyleSheet.create({
 });
  function  mapStateToProps(state){
     return{
-        data:state.Init.catList
+        data:state.ReducerCat.catList
     }
 }
 export default  connect(mapStateToProps)(Catergry);

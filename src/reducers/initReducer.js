@@ -1,22 +1,22 @@
 
 import * as Types from '../actions/actionTypes'
 
-
-
-
 const initialState = {
     index: {
-        hasInfo:false,
+        hasInfo: false,
         status: false,
         data: {},
     },
-    catList: {
-        status: false,
-        data: {},
-    },
-
 }
-export default function reducer1(state = initialState, action) {
+const initialGoodsState = {
+    goods: {
+        hasGoods: false,
+        newGoods: {},
+    }
+}
+
+
+export function ReducerIndex(state = initialState, action) {
     switch (action.type) {
         case Types.INIT_DOING:
             return Object.assign({}, state, {
@@ -27,24 +27,31 @@ export default function reducer1(state = initialState, action) {
         case Types.INIT_DONE:
             return Object.assign({}, state, {
                 index: {
-                    hasInfo:true,
+                    hasInfo: true,
                     status: 'success',
                     data: action.data,
                 },
             });
+        default:
+            return state;
+    }
+}
 
-        case Types.INIT_CAT_DOING:
+
+export function ReducerGoods(state = initialGoodsState, action) {
+    switch (action.type) {
+        case Types.INIT_GOODS_DOING:
+        return Object.assign({}, state, {
+            goods: {
+                hasGoods: 'doing',
+            },
+        });
+        case Types.INIT_GOODS_DONE:
             return Object.assign({}, state, {
-                catList: {
-                    status: 'doing'
+                goods: {
+                    hasGoods: 'success',
+                    newGoods: action.data,
                 },
-            });
-        case Types.INIT_CAT_DONE:
-            return Object.assign({}, state, {
-                catList: {
-                    status: 'success',
-                    data: action.data,
-                }
             });
         default:
             return state;

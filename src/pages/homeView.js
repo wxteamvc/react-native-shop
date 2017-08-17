@@ -12,12 +12,14 @@ import {
     FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { DOMAIN, ScreenWidth} from '../common/global';
+import { DOMAIN, ScreenWidth } from '../common/global';
 import { connect } from 'react-redux'
 import Banner from '../component/banner';
-import { getinfo } from '../actions/initAction'
+import { getinfo,getGoods } from '../actions/initAction'
 import Swiper from 'react-native-swiper';
 import Search from '../component/search';
+import Loading from '../component/loading';
+import Show from '../component/showProduct';
 //接收参数{this.props.navigation.state.params.****}
 class Home extends Component {
     constructor(props) {
@@ -32,9 +34,9 @@ class Home extends Component {
     componentDidMount() {
         if (!this.props.data.hasInfo) {
             this.props.dispatch(getinfo())
+            this.props.dispatch(getGoods());
         }
-
-
+           
     }
     _event = ({ item }) => {
         return (
@@ -73,6 +75,12 @@ class Home extends Component {
         )
     }
 
+    _newGoods(){
+          if(this.props.goodsData.hasGoods=='success'){
+               return(<Show text={'新品'} texten={'HOT'} data={this.props.goodsData.newGoods} navigate={this.props.navigation}/>)
+          }
+    }
+
     searchBackground(e) {
         if (e.nativeEvent.contentOffset.y > 170) {
             if (this.state.searchStyle.backgroundColor != 'red') {
@@ -96,12 +104,12 @@ class Home extends Component {
             }
         }
     }
-    render() {
-        if (this.props.data.status == 'success') {
+    render(){  
+        if (this.props.data.status == "success") {
             return (
                 <View style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={[this.state.searchStyle, { position: 'absolute', top: 0, left: 0, zIndex: 100, width: ScreenWidth, height: 40, justifyContent: 'center' }]}>
-                        <Search lbtn={'扫码'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Search'} />
+                        <Search lbtn={'劳卡衣柜'} search={'星空乐园系列'} h={30} rbtn={'搜索'} navigate={this.props.navigation} page={'Search'} />
                     </View>
                     <ScrollView onScroll={e => { this.searchBackground(e) }}>
                         <Banner banner={this.props.data.data.advs} />
@@ -163,15 +171,14 @@ class Home extends Component {
                             showsHorizontalScrollIndicator={false}
                         >
                         </FlatList>
+                        {this._newGoods()}
+                        
                     </ScrollView>
                 </View>
             );
         } else {
             return (
-                <View>
-                    <Text>LOADING....</Text>
-
-                </View>
+                <Loading />
             );
         }
 
@@ -180,7 +187,8 @@ class Home extends Component {
 
 function mapStateToProps(state) {
     return {
-        data: state.Init.index
+        data:state.ReducerIndex.index,
+        goodsData:state.ReducerGoods.goods,
     }
 }
 

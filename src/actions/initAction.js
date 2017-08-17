@@ -1,5 +1,5 @@
 import * as Types from "./actionTypes";
-import { SERVER_URL, PRODUCT_URL } from '../common/global'
+import { SERVER_URL, PRODUCT_URL,search_url } from '../common/global'
 export function getinfo() {
     return (
         dispatch => {
@@ -16,29 +16,25 @@ export function getinfo() {
         }
     )
 }
-export function getCatInfo() {
+
+
+export function getGoods() {
     return (
         dispatch => {
-            dispatch(init(Types.INIT_CAT_DOING))
-            fetch(PRODUCT_URL)
+            dispatch(init(Types.INIT_GOODS_DOING))
+            fetch(search_url())
                 .then(response => response.json())
                 .then(
                 responseJson => {
-                    dispatch(init(Types.INIT_CAT_DONE, responseJson))
+                    dispatch(init(Types.INIT_GOODS_DONE, responseJson))
                 }
                 )
                 .catch((error) => {
                     console.error(error);
                 });
         }
-
     )
-
-
 }
-
-
-
 
 function init(type, data = {}) {
     return {
