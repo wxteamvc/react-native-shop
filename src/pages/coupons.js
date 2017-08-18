@@ -68,7 +68,7 @@ import { getCoupons } from '../actions/couponsAction'
                         <View style={{ flex: 0.15, alignItems: 'flex-end', justifyContent: 'center' }}>
                             <TouchableOpacity style={{ marginRight: 10 }}
                                 onPress={() => {
-                                    this.props.navigation.navigate('User')
+                                    this.props.navigation.navigate('UserIndex')
                                 }
                                 }>
                                 <Icon name={'user'} size={25} color={'#fff'} />

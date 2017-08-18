@@ -7,7 +7,7 @@ import Ad from "../pages/adView";
 import Goods from '../pages/goodsView';
 import Search from '../pages/searchView';
 import Coupons from '../pages/coupons';
-import User from "../pages/userView";
+import UserIndex from "../pages/userView";
 const HomeStack = StackNavigator({
   Home: {
     screen: Home,
@@ -43,8 +43,8 @@ const HomeStack = StackNavigator({
       tabBarVisible: false,
     },
   },
-  User: {
-    screen: User,
+  UserIndex: {
+    screen: UserIndex,
     navigationOptions: {
       // header: null,
       tabBarVisible: false,
