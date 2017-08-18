@@ -16,21 +16,16 @@ class User extends Component{
     constructor(...props){
         super(...props);
     }
-    // componentDidUpdate(nextProps){
-    //     let { data } = this.props;
-    //      //请求登陆检查用户和密码是否更改
-    //      alert(data.token);
-    //     // if(data.status === "success"){
-    //     //     this.props.dispatch(userCenter(data.token))
-    //     // }
-       
-    // }
+
+    componentDidUpdate(nextProps){
+        let { data,userInfo } = this.props;
+         //请求用户信息
+        if(data.status === "success" && userInfo.status === false){
+            this.props.dispatch(userCenter(data.token))
+        }
+    }
 
     render(){
-        //alert(this.props.data.status);
-        // if (this.props.data.status === "success"){
-        //     alert(this.props.data.token)
-        // }
         if(this.props.data.status=='success'){
             return (
                 <View>
@@ -50,7 +45,8 @@ class User extends Component{
 
 function mapStateToProps(state) {
     return {
-        data: state.User
+        data: state.User,
+        userInfo: state.userInfo
     }
 }
 

@@ -4,7 +4,7 @@ import ReducerCat from './catReducer'
 import GoodsList from './goodsListReducer';
 import { History } from './historyReducer';
 import { Coupons } from './couponsReducer';
-import  User  from './userReducer';
+import  { loginReducer,userInfo }  from './userReducer';
 
 const rootReducer = combineReducers({
   GoodsList,
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
   ReducerGoods,
   ReducerCat,
   Coupons,
-  User
+  User:loginReducer,
+  userInfo
 })
 
 export default rootReducer;

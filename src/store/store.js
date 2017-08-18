@@ -9,7 +9,10 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(renders,autoRehydrate());
 
-persistStore(store,{storage:AsyncStorage});
+persistStore(store,{
+    storage:AsyncStorage,
+    blacklist:['userInfo']
+});
 
 export default store;
 
