@@ -93,7 +93,7 @@ class Coupons extends Component {
                 return (<Loading />)
             }
         } else {
-            return (<Login dispatch={...this.props} />)
+            return (<Login {...this.props} />)
         }
 
 

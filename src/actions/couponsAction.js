@@ -6,15 +6,20 @@ import { COUPONS_URL } from "../common/global";
 export function getCoupons(token) {
     return (
         dispatch => {
+            var key ,value
+            for ( i in token) {
+               key = i;
+               value = token[key]
+           }
             dispatch(init(Types.GET_COUPONS_DOING))
             var url=COUPONS_URL+Math.round(new Date().getTime()/1000)+'&app=1'
-            alert(Math.round(new Date().getTime()/1000))
+            alert(url)
             fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: '__ewei_shopv2_member_session_1=' + token.__ewei_shopv2_member_session_1
+                body: key +'='+ value
             })
                 .then(response => response.json())
                 .then(
