@@ -26,6 +26,7 @@ export function login(data){
 export function userCenter(token){
     return (
         dispatch => {
+            // dispatch(userCenterCallBAck(Types.USER_CENTER_DOING))
             fetch(USER_CENTER,{
                 method: 'POST',
                 headers: {
@@ -39,8 +40,7 @@ export function userCenter(token){
                     dispatch(userCenterCallBAck(Types.USER_CENTER, responseJson))
                 }
             ).catch((error) => {
-                console.log(error)
-                ToastAndroid.show('网络连接失败1！', ToastAndroid.SHORT);
+                ToastAndroid.show('网络连接失败！', ToastAndroid.SHORT);
             });
         }
     )
