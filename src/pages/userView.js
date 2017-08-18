@@ -10,11 +10,18 @@ import {
 } from 'react-native';
 import Login from '../component/login';
 import { connect } from 'react-redux';
-
+import { login } from '../actions/userAction';
 
 class User extends Component{
     constructor(...props){
         super(...props);
+    }
+
+    componentDidMount(){
+        //请求登陆检查用户和密码是否更改
+        if(this.props.data.status=='success'){
+            this.props.dispatch(login({mobile:this.props.data.userInfo.mobile,pwd:this.props.data.userInfo.pwd}))
+        }
     }
    
     render(){
