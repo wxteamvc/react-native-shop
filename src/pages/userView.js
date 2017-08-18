@@ -37,7 +37,7 @@ class User extends Component{
             );
         }else{
             return (
-                <Login dispatch={this.props.dispatch} />
+                <Login {...this.props} />
             )
         }
     }

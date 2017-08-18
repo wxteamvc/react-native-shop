@@ -89,7 +89,7 @@ export default class Login extends Component{
     }
 
     _register(){
-
+        console.log(this.props)
     }
 
 }
