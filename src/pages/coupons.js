@@ -17,18 +17,19 @@ import { connect } from 'react-redux'
 import Loading from '../component/loading';
 import Login from '../component/login';
 import { getCoupons } from '../actions/couponsAction'
- class Coupons extends Component {
+class Coupons extends Component {
     constructor(props) {
         super(props)
     }
+
     componentDidMount() {
-        if(this.props.user.status=='success'){
-        this.props.dispatch(getCoupons(this.props.user.token)) 
-    }  
+        if (this.props.user.status == 'success') {
+            this.props.dispatch(getCoupons(this.props.user.token))
+        }
     }
 
     coupons() {
-        var result=this.props.data.data.result.list
+        var result = this.props.data.data.result.list
         var list = [];
         for (var i = 0; i < result.length; i++) {
             list.push(
@@ -56,8 +57,8 @@ import { getCoupons } from '../actions/couponsAction'
     }
 
     render() {
-        if(this.props.user.status=='success'){
-            if(this.props.data.status=='success'){
+        if (this.props.user.status == 'success') {
+            if (this.props.data.status == 'success') {
                 return (
                     <View style={{ flex: 1, backgroundColor: '#fff' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 40, backgroundColor: 'red', opacity: 0.6 }}>
@@ -85,17 +86,17 @@ import { getCoupons } from '../actions/couponsAction'
                         <ScrollView>
                             {this.coupons()}
                         </ScrollView>
-        
+
                     </View>
                 )
-            }else{
-                return (<Loading/>)
+            } else {
+                return (<Loading />)
             }
-        }else{
-            return(<Login dispatch={this.props.dispatch}/>)
+        } else {
+            return (<Login dispatch={...this.props} />)
         }
-        
-        
+
+
     }
 
 
@@ -104,8 +105,8 @@ import { getCoupons } from '../actions/couponsAction'
 
 function mapStateToProps(state) {
     return {
-        user:state.User,
-        data:state.Coupons,   
+        user: state.User,
+        data: state.Coupons,
     }
 }
 
