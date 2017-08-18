@@ -13,7 +13,7 @@ export function login(data){
             .then(response => response.json())
             .then(
                 responseJson => {
-                    dispatch(loginCallBack(Types.Login, responseJson))
+                    dispatch(loginCallBack(Types.Login, Object.assign(responseJson,data)))
                 }
             ).catch((error) => {
                 console.error(error);
@@ -23,6 +23,7 @@ export function login(data){
 }
 
 function loginCallBack(type, data = {}) {
+    console.log(data)
     return {
         type: type,
         data: data

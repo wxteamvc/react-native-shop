@@ -18,12 +18,7 @@ export const SEARCH_HISTORY = 'SEARCH_HISTORY';
 export const CLEAR = 'CLEAR';
 //登陆
 export const Login = 'Login';
-//获取优惠券完成
-export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
 //开始获取优惠券
 export const GET_COUPONS_DOING = 'GET_COUPONS_DOING';
-//登陆
-
-
-
-
+//获取优惠券完成
+export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
