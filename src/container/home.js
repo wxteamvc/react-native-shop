@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-
+import { 
+  Text,
+} from 'react-native';
 import Home from "../pages/homeView";
 import Ad from "../pages/adView";
 import Goods from '../pages/goodsView';
@@ -46,15 +48,13 @@ const HomeStack = StackNavigator({
   UserIndex: {
     screen: UserIndex,
     navigationOptions: {
-      // header: null,
       tabBarVisible: false,
+      headerTitle:<Text style={{marginLeft:100,fontSize:16}}>个人中心</Text>
     },
   },
 }, {
     navigationOptions: {
-      //code
     },
-
   });
 
 export default HomeStack;

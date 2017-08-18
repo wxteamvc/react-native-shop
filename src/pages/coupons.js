@@ -22,9 +22,9 @@ import { getCoupons } from '../actions/couponsAction'
         super(props)
     }
     componentDidMount() {
-       if(this.props.user.status=='success'){
-        this.props.dispatch(getCoupons(this.props.user.token))
-       }    
+        if(this.props.user.status=='success'){
+        this.props.dispatch(getCoupons(this.props.user.token)) 
+    }  
     }
 
     coupons() {
@@ -56,44 +56,44 @@ import { getCoupons } from '../actions/couponsAction'
     }
 
     render() {
-      if(this.props.user.status=='success'){
-        if(this.props.data.status=='success'){
-            return (
-                <View style={{ flex: 1, backgroundColor: '#fff' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 40, backgroundColor: 'red', opacity: 0.6 }}>
-                        <View style={{ flex: 0.15, alignItems: 'flex-start', justifyContent: 'center', }}>
-                            <TouchableOpacity style={{ marginLeft: 10 }} onPress={() => this.props.navigation.goBack()}>
-                                <Icon name={'chevron-left'} size={25} color={'#fff'} />
-                            </TouchableOpacity>
+        if(this.props.user.status=='success'){
+            if(this.props.data.status=='success'){
+                return (
+                    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 40, backgroundColor: 'red', opacity: 0.6 }}>
+                            <View style={{ flex: 0.15, alignItems: 'flex-start', justifyContent: 'center', }}>
+                                <TouchableOpacity style={{ marginLeft: 10 }} onPress={() => this.props.navigation.goBack()}>
+                                    <Icon name={'chevron-left'} size={25} color={'#fff'} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{ flex: 0.7, alignItems: 'center', justifyContent: 'center', }}>
+                                <Text style={{ fontSize: 18, color: '#fff' }}>优惠券领取中心</Text>
+                            </View>
+                            <View style={{ flex: 0.15, alignItems: 'flex-end', justifyContent: 'center' }}>
+                                <TouchableOpacity style={{ marginRight: 10 }}
+                                    onPress={() => {
+                                        this.props.navigation.navigate('UserIndex')
+                                    }
+                                    }>
+                                    <Icon name={'user'} size={25} color={'#fff'} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View style={{ flex: 0.7, alignItems: 'center', justifyContent: 'center', }}>
-                            <Text style={{ fontSize: 18, color: '#fff' }}>优惠券领取中心</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc', height: 50 }}>
+                            <Text style={{ color: '#FF6600', fontSize: 18, padding: 10, borderColor: '#FF6600', borderBottomWidth: 2, flex: 0.25 }}>全部优惠券</Text>
                         </View>
-                        <View style={{ flex: 0.15, alignItems: 'flex-end', justifyContent: 'center' }}>
-                            <TouchableOpacity style={{ marginRight: 10 }}
-                                onPress={() => {
-                                    this.props.navigation.navigate('UserIndex')
-                                }
-                                }>
-                                <Icon name={'user'} size={25} color={'#fff'} />
-                            </TouchableOpacity>
-                        </View>
+                        <ScrollView>
+                            {this.coupons()}
+                        </ScrollView>
+        
                     </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderColor: '#ccc', height: 50 }}>
-                        <Text style={{ color: '#FF6600', fontSize: 18, padding: 10, borderColor: '#FF6600', borderBottomWidth: 2, flex: 0.25 }}>全部优惠券</Text>
-                    </View>
-                    <ScrollView>
-                        {this.coupons()}
-                    </ScrollView>
-    
-                </View>
-            )
+                )
+            }else{
+                return (<Loading/>)
+            }
         }else{
-            return (<Loading/>)
+            return(<Login dispatch={this.props.dispatch}/>)
         }
-      }else{
-          return(<Login/>)
-      }  
         
         
     }
@@ -105,8 +105,7 @@ import { getCoupons } from '../actions/couponsAction'
 function mapStateToProps(state) {
     return {
         user:state.User,
-        data: state.Coupons,
-        
+        data:state.Coupons,   
     }
 }
 
