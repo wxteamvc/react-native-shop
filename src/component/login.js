@@ -57,6 +57,7 @@ export default class Login extends Component{
                                 pwd: text
                             })}
                             underlineColorAndroid="transparent"
+                            password={true}
                         />
                         </View>
                     </View>
@@ -89,7 +90,7 @@ export default class Login extends Component{
     }
 
     _register(){
-        console.log(this.props)
+        this.props.navigation.navigate('Register')
     }
 
 }

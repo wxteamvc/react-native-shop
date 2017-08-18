@@ -38,3 +38,9 @@ export const Login_URL = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry
 
 //会员中心请求地址
 export const USER_CENTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member&mid=0&app=1'
+
+//注册短信验证地址
+export const VERIFY_CODE = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.verifycode'
+
+//注册请求地址
+export const REGISTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.register&app=1'

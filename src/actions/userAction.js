@@ -1,47 +1,51 @@
 import * as Types from "./actionTypes";
-import { Login_URL,USER_CENTER } from "../common/global";
+import { Login_URL, USER_CENTER } from "../common/global";
 import { ToastAndroid } from 'react-native';
-export function login(data){
+export function login(data) {
     return (
         dispatch => {
-            fetch(Login_URL,{
+            fetch(Login_URL, {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'mobile='+data.mobile+'&pwd='+data.pwd
-              })
-            .then(response => response.json())
-            .then(
+                body: 'mobile=' + data.mobile + '&pwd=' + data.pwd
+            })
+                .then(response => response.json())
+                .then(
                 responseJson => {
                     dispatch(loginCallBack(Types.LOGIN, responseJson))
                 }
-            ).catch((error) => {
-                ToastAndroid.show('网络连接失败！', ToastAndroid.SHORT);
-            });
+                ).catch((error) => {
+                    ToastAndroid.show('网络连接失败！', ToastAndroid.SHORT);
+                });
         }
     )
 }
 
-export function userCenter(token){
+export function userCenter(token) {
     return (
         dispatch => {
-            // dispatch(userCenterCallBAck(Types.USER_CENTER_DOING))
-            fetch(USER_CENTER,{
+            var key, value;
+            for (i in token) {
+                key = i;
+                value = token[key]
+            }
+            fetch(USER_CENTER, {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: '__ewei_shopv2_member_session_1='+token.__ewei_shopv2_member_session_1
-              })
-            .then(response => response.json())
-            .then(
+                body: key + '=' + value
+            })
+                .then(response => response.json())
+                .then(
                 responseJson => {
                     dispatch(userCenterCallBAck(Types.USER_CENTER, responseJson))
                 }
-            ).catch((error) => {
-                ToastAndroid.show('网络连接失败！', ToastAndroid.SHORT);
-            });
+                ).catch((error) => {
+                    ToastAndroid.show('网络连接失败！', ToastAndroid.SHORT);
+                });
         }
     )
 }
@@ -59,7 +63,7 @@ function loginCallBack(type, data = {}) {
     }
 }
 
-function userCenterCallBAck(type, data = {}){
+function userCenterCallBAck(type, data = {}) {
     return {
         type: type,
         data: data

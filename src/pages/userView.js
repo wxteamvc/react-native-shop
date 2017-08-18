@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { userCenter,loginOut } from '../actions/userAction';
 
 class User extends Component{
+    
     constructor(...props){
         super(...props);
     }
