@@ -17,8 +17,12 @@ export const SEARCH_HISTORY = 'SEARCH_HISTORY';
 //清空搜索历史
 export const CLEAR = 'CLEAR';
 //登陆
-export const Login = 'Login';
+export const LOGIN = 'LOGIN';
 //开始获取优惠券
 export const GET_COUPONS_DOING = 'GET_COUPONS_DOING';
 //获取优惠券完成
 export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
+//请求会员中心
+export const USER_CENTER = 'USER_CENTER';
+//退出登陆
+export const LOGIN_OUT = 'LOGIN_OUT';

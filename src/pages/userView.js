@@ -10,25 +10,34 @@ import {
 } from 'react-native';
 import Login from '../component/login';
 import { connect } from 'react-redux';
-import { login } from '../actions/userAction';
+import { userCenter,loginOut } from '../actions/userAction';
 
 class User extends Component{
     constructor(...props){
         super(...props);
     }
+    // componentDidUpdate(nextProps){
+    //     let { data } = this.props;
+    //      //请求登陆检查用户和密码是否更改
+    //      alert(data.token);
+    //     // if(data.status === "success"){
+    //     //     this.props.dispatch(userCenter(data.token))
+    //     // }
+       
+    // }
 
-    componentDidMount(){
-        //请求登陆检查用户和密码是否更改
-        if(this.props.data.status=='success'){
-            this.props.dispatch(login({mobile:this.props.data.userInfo.mobile,pwd:this.props.data.userInfo.pwd}))
-        }
-    }
-   
     render(){
+        //alert(this.props.data.status);
+        // if (this.props.data.status === "success"){
+        //     alert(this.props.data.token)
+        // }
         if(this.props.data.status=='success'){
             return (
                 <View>
                     <Text>用户中心</Text>
+                    <TouchableOpacity onPress={()=>this.props.dispatch(loginOut())}>
+                        <Text>退出登陆</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }else{

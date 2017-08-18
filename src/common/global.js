@@ -35,3 +35,6 @@ export function search_url(newData={}) {
 
 //登陆请求地址
 export const Login_URL = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.login&mid=0&app=1';
+
+//会员中心请求地址
+export const USER_CENTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member&mid=0&app=1'

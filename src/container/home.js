@@ -43,13 +43,13 @@ const HomeStack = StackNavigator({
       tabBarVisible: false,
     },
   },
-  UserIndex: {
-    screen: UserIndex,
-    navigationOptions: {
-      // header: null,
-      tabBarVisible: false,
-    },
-  },
+  // UserIndex: {
+  //   screen: UserIndex,
+  //   navigationOptions: {
+  //     // header: null,
+  //     tabBarVisible: false,
+  //   },
+  // },
 }, {
     navigationOptions: {
       //code

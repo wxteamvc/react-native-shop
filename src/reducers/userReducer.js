@@ -7,15 +7,12 @@ const initialState = {
 }
 export default function loginReducer(state = initialState, action) {
     switch (action.type) {
-        case Types.Login:
+        case Types.LOGIN:
             if(action.data.status==1){
                 return Object.assign({}, state, {
                     status: 'success',
                     token: action.data.token,
-                    userInfo: {
-                        mobile:action.data.mobile,
-                        pwd:action.data.pwd
-                    }
+                    userInfo: {}
                 });
             }else if(action.data.status==0){
                 ToastAndroid.show(action.data.result.message, ToastAndroid.SHORT);
@@ -32,6 +29,34 @@ export default function loginReducer(state = initialState, action) {
                     userInfo: {}
                 });
             }
+        case Types.USER_CENTER:
+            if(action.data.code==1){
+                return Object.assign({}, state, {
+                    status: 'success',
+                    token: action.data.token,
+                    userInfo: action.data.data.member
+                });
+            }else if(action.data.code==0){
+                ToastAndroid.show(action.data.result.message, ToastAndroid.SHORT);
+                return Object.assign({}, state, {
+                    status: false,
+                    token: null,
+                    userInfo: {}
+                });
+            }else{
+                ToastAndroid.show('正在加载！', ToastAndroid.SHORT);
+                return Object.assign({}, state, {
+                    status: false,
+                    token: null,
+                    userInfo: {}
+                });
+            }
+        case Types.LOGIN_OUT:
+            return Object.assign({}, state, {
+                status: false,
+                token: null,
+                userInfo: {}
+            });
         default:
             return state;
     }
