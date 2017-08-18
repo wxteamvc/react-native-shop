@@ -11,7 +11,7 @@ export const PRODUCT_URL='http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry
 //图片域名
 export const DOMAIN='http://www.wxdevelop.com/we7/attachment/';
 //获取优惠券网址
-export const COUPONS_URL='http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.getlist&mid=0&page=1&cateid=&_=1502956849968&app=1 ' ;                  
+export const COUPONS_URL='http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.getlist&mid=0&page=1&cateid=&' ;                  
 //搜索
 export function search_url(newData={}) {
     let data = {

@@ -32,11 +32,8 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        if (!this.props.data.hasInfo) {
             this.props.dispatch(getinfo())
-            this.props.dispatch(getGoods());
-        }
-           
+            this.props.dispatch(getGoods());     
     }
     _event = ({ item }) => {
         return (
