@@ -15,13 +15,16 @@ import { DOMAIN, ScreenWidth, ScreenHeight } from '../common/global';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { connect } from 'react-redux'
 import Loading from '../component/loading';
+import Login from '../component/login';
 import { getCoupons } from '../actions/couponsAction'
  class Coupons extends Component {
     constructor(props) {
         super(props)
     }
     componentDidMount() {
-        this.props.dispatch(getCoupons())
+       if(this.props.user.status=='success'){
+        this.props.dispatch(getCoupons(this.props.user.token))
+       }    
     }
 
     coupons() {
@@ -53,6 +56,7 @@ import { getCoupons } from '../actions/couponsAction'
     }
 
     render() {
+      if(this.props.user.status=='success'){
         if(this.props.data.status=='success'){
             return (
                 <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -87,6 +91,10 @@ import { getCoupons } from '../actions/couponsAction'
         }else{
             return (<Loading/>)
         }
+      }else{
+          return(<Login/>)
+      }  
+        
         
     }
 
@@ -96,7 +104,9 @@ import { getCoupons } from '../actions/couponsAction'
 
 function mapStateToProps(state) {
     return {
-        data: state.Coupons
+        user:state.User,
+        data: state.Coupons,
+        
     }
 }
 
