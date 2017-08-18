@@ -80,7 +80,7 @@ export default class Login extends Component{
 
     _login(){
         let mobile = this.state.mobile;
-        let pwd = this.state.pwd;
+        let pwd = this.state.pwd; 
         if(mobile&&pwd){
             this.props.dispatch(login({mobile:this.state.mobile,pwd:this.state.pwd}))
         }else{

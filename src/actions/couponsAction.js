@@ -9,7 +9,7 @@ export function getCoupons(token) {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: token
+                body: '__ewei_shopv2_member_session_1=' + token.__ewei_shopv2_member_session_1
             })
                 .then(response => response.json())
                 .then(

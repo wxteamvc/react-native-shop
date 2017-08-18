@@ -50,10 +50,10 @@ class Serach extends Component {
         })
     }
 
-    jump=()=>{
+    jump = () => {
         if (this.state.hasKeyWord) {
-            this.props.dispatch(searchHistory(this.state.text))     
-            this.props.navigation.navigate('Goods', { search:{keywords:this.state.text}})
+            this.props.dispatch(searchHistory(this.state.text))
+            this.props.navigation.navigate('Goods', { search: { keywords: this.state.text } })
         } else {
             ToastAndroid.show('请输入要搜索的内容', ToastAndroid.SHORT)
         }
@@ -63,11 +63,11 @@ class Serach extends Component {
         var content = [];
         for (let i = 0; i < this.props.history.keyWords.length; i++) {
             content.push(
-                <TouchableOpacity key={i} onPress={()=>this.props.navigation.navigate('Goods', { search:{keywords:this.props.history.keyWords[i]}})}>        
-                <View  style={{ borderBottomWidth: 1, borderColor: '#ccc', paddingBottom: 10, paddingTop: 10 }}>
-                    <Text style={{ marginLeft: 10 }}>{this.props.history.keyWords[i]}</Text>
-                </View>
-                 </TouchableOpacity>
+                <TouchableOpacity key={i} onPress={() => this.props.navigation.navigate('Goods', { search: { keywords: this.props.history.keyWords[i] } })}>
+                    <View style={{ borderBottomWidth: 1, borderColor: '#ccc', paddingBottom: 10, paddingTop: 10 }}>
+                        <Text style={{ marginLeft: 10 }}>{this.props.history.keyWords[i]}</Text>
+                    </View>
+                </TouchableOpacity>
             )
         }
         return (content)
@@ -101,13 +101,13 @@ class Serach extends Component {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', height: 40 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', opacity: 0.6, height: 40 }}>
                     <TouchableOpacity style={{ flex: 0.15, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => this.props.navigation.goBack()}
                     >
                         <Icon name={'reply-all'} size={25} color='#fff' />{console.log(this.props)}
                     </TouchableOpacity>
-                    <TextInput style={{ flex: 0.7, backgroundColor: '#fff', opacity: 0.4, padding: 0, paddingLeft: 20, borderRadius: 15, height: 30, }}
+                    <TextInput style={{ flex: 0.7, backgroundColor: '#fff', padding: 0, paddingLeft: 20, borderRadius: 15, height: 30, }}
                         textAlignVertical='center'
                         placeholder='输入要搜索的内容'
                         placeholderTextColor='#000'
