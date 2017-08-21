@@ -44,3 +44,6 @@ export const VERIFY_CODE = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=ent
 
 //注册请求地址
 export const REGISTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.register&app=1'
+
+//购物车请求地址
+export const CART_URL = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.cart&mid=0&app=1'

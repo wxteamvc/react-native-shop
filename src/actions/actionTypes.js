@@ -26,3 +26,5 @@ export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
 export const USER_CENTER = 'USER_CENTER';
 //退出登陆
 export const LOGIN_OUT = 'LOGIN_OUT';
+//请求购物车信息
+export const CART_INFO = 'CART_INFO';
