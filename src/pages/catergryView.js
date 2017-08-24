@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 var {height, width} = require('Dimensions').get('window');
 import Loading from '../component/loading'
  class Catergry extends Component{
+
     constructor(...props){
         super(...props);
         this.state = {
@@ -23,9 +24,11 @@ import Loading from '../component/loading'
             selectedBarId: 'isrecommand'
         }
     }
+
     componentDidMount() {
         this.props.dispatch(getCatInfo());
     }
+    
     componentWillReceiveProps(nextProps) {
         // if (this.props.data.status=="success"){
         //     this.setState({
@@ -33,6 +36,7 @@ import Loading from '../component/loading'
         //     }) 
         // }
     }
+
     render() {
         if (this.props.data.status == 'success') {
             return (
@@ -87,8 +91,8 @@ import Loading from '../component/loading'
                 </View>
             );
         }
-
     }
+
     _rightList() {
         if (this.state.selectedBarId != 'isrecommand') {
             var catid = this.state.selectedBarId;
@@ -140,13 +144,13 @@ import Loading from '../component/loading'
                 </View>
             )
         }
-
     }
-
 }
+
 function mapStateToProps(state) {
     return {
         data:state.ReducerCat.catList    
     }
 }
+
 export default connect(mapStateToProps)(Catergry);

@@ -41,9 +41,22 @@ export function search_url(newData={}) {
 export const Login_URL = BasicUrl+'?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.login&mid=0&app=1';
 
 //会员中心请求地址
+<<<<<<< HEAD
 export const USER_CENTER = BasicUrl+'?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member&mid=0&app=1';
 
 //商品详情请求网址
 export const GOODSINFO = BasicUrl+'?i=1&c=entry&m=ewei_shopv2&do=mobile&r=goods.detail&mid=0&app=1';
 //商品选项请求地址
 export const GOODSPICKER = BasicUrl+'?i=1&c=entry&m=ewei_shopv2&do=mobile&r=goods.picker&mid=0';
+=======
+export const USER_CENTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member&mid=0&app=1'
+
+//注册短信验证地址
+export const VERIFY_CODE = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.verifycode'
+
+//注册请求地址
+export const REGISTER = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=account.register&app=1'
+
+//购物车请求地址
+export const CART_URL = 'http://www.wxdevelop.com/we7/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.cart&mid=0&app=1'
+>>>>>>> 025bf4a489491036f7d590e4d3504fd34da7bf12
