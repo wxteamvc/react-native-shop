@@ -26,16 +26,13 @@ export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
 export const USER_CENTER = 'USER_CENTER';
 //退出登陆
 export const LOGIN_OUT = 'LOGIN_OUT';
-<<<<<<< HEAD
 //开始获取商品详细信息
-export const GET_GOODSINFO_DOING = 'GET_GOODSINFO_DOING'
+export const GET_GOODSINFO_DOING = 'GET_GOODSINFO_DOING';
 //获取商品详细信息完成
-export const GET_GOODSINFO_DONE = 'GET_GOODSINFO_DONE'
+export const GET_GOODSINFO_DONE = 'GET_GOODSINFO_DONE';
 //开始获取商品颜色分类结构选项
-export const GET_GOODSPICKER_DOING = 'GET_GOODSPICKER_DOING'
+export const GET_GOODSPICKER_DOING = 'GET_GOODSPICKER_DOING';
 //获取商品颜色分类结构选项完成
-export const GET_GOODSPICKER_DONE = 'GET_GOODSPICKER_DONE'
-=======
+export const GET_GOODSPICKER_DONE = 'GET_GOODSPICKER_DONE';
 //请求购物车信息
 export const CART_INFO = 'CART_INFO';
->>>>>>> 025bf4a489491036f7d590e4d3504fd34da7bf12
