@@ -3301,6 +3301,14 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-pull@^2.0.2:
+  version "2.0.2"
+  resolved "http://registry.npm.taobao.org/react-native-pull/download/react-native-pull-2.0.2.tgz#15264a737bcf56debd4bacaa2705254d9ef1b345"
+
+react-native-swRefresh@^1.2.3:
+  version "1.2.3"
+  resolved "http://registry.npm.taobao.org/react-native-swRefresh/download/react-native-swRefresh-1.2.3.tgz#84fa925cc13322812251c023f331dbfd5c03095a"
+
 react-native-swiper@^1.5.9:
   version "1.5.9"
   resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.9.tgz#7f7cd21e74a0c9fe7ac25c12714bf4d655823920"

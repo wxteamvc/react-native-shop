@@ -20,6 +20,7 @@ import Swiper from 'react-native-swiper';
 import Search from '../component/search';
 import Loading from '../component/loading';
 import Show from '../component/showProduct';
+
 //接收参数{this.props.navigation.state.params.****}
 class Home extends Component {
     constructor(props) {

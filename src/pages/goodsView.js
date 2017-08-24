@@ -11,14 +11,15 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
-    TextInput
+    TextInput,
+    ToastAndroid,
 } from 'react-native';
 import { search } from '../actions/searchAction';
 import { getCatInfo } from '../actions/catAction';
 import { connect } from 'react-redux';
 import { ScreenWidth } from '../common/global';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import  {goodsinfo} from '../actions/goodsInfo'
 class Goods extends Component {
 
     constructor(...props) {
@@ -54,6 +55,14 @@ class Goods extends Component {
             this.state.search, this.props.navigation.state.params.search
         ))
         this.props.dispatch(search(this.state.search));
+    }
+
+
+    componentDidUpdate() {
+        // alert(this.props.goodsinfo.status)
+        if (this.props.goodsinfo.status == 'success') {
+            this.props.navigation.navigate('GoodsInfo', { info: this.props.goodsinfo.data })
+        }
     }
 
     render() {
@@ -248,9 +257,9 @@ class Goods extends Component {
                         () => {
                             this.setState({ orderBy: 'default' });
                             this.props.dispatch(search(Object.assign(
-                                    this.state.search,
-                                    { order: '', by: '' }
-                                )));
+                                this.state.search,
+                                { order: '', by: '' }
+                            )));
                         }
                     }>
                         <Text style={{ color: this.state.orderBy == 'default' ? 'red' : null, fontSize: 16 }}>综合</Text>
@@ -352,6 +361,18 @@ class Goods extends Component {
         }
     }
 
+    //获取商品详细信息
+    getGoodsIinfo(id) {
+        if (this.props.goodsinfo.status === false) {
+            this.props.dispatch(goodsinfo(id))
+        }
+    }
+
+
+
+
+
+
     // 商品列表视图
     _goodsList() {
         let goodsList = this.props.goodsList;
@@ -364,7 +385,7 @@ class Goods extends Component {
                     goodsListArr.push(
                         <View key={i} style={{ width: ScreenWidth / 2 }}>
                             <View style={{ marginTop: 5, marginLeft: 5, marginBottom: 5 }}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.getGoodsIinfo(goodsListObj[i].id) }}>
                                     <Image source={{ uri: goodsListObj[i].thumb }} style={{ width: ScreenWidth / 2 - 10, height: ScreenWidth / 2 - 5 }} />
                                 </TouchableOpacity>
                             </View>
@@ -438,7 +459,8 @@ class Goods extends Component {
 function mapStateToProps(state) {
     return {
         goodsList: state.GoodsList,
-        data: state.ReducerCat.catList
+        data: state.ReducerCat.catList,
+        goodsinfo: state.GoodsInfo,
     }
 }
 

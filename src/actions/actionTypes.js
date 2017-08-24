@@ -26,3 +26,11 @@ export const GET_COUPONS_DONE = 'GET_COUPONS_DONE';
 export const USER_CENTER = 'USER_CENTER';
 //退出登陆
 export const LOGIN_OUT = 'LOGIN_OUT';
+//开始获取商品详细信息
+export const GET_GOODSINFO_DOING = 'GET_GOODSINFO_DOING'
+//获取商品详细信息完成
+export const GET_GOODSINFO_DONE = 'GET_GOODSINFO_DONE'
+//开始获取商品颜色分类结构选项
+export const GET_GOODSPICKER_DOING = 'GET_GOODSPICKER_DOING'
+//获取商品颜色分类结构选项完成
+export const GET_GOODSPICKER_DONE = 'GET_GOODSPICKER_DONE'

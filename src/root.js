@@ -11,6 +11,7 @@ import Store from "./store/store";
 import { Provider } from 'react-redux';
 import App from './app';
 
+
 export default class Root extends Component {
   render() {
     return (

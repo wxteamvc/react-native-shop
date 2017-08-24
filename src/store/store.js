@@ -11,7 +11,7 @@ const store = createStoreWithMiddleware(renders,autoRehydrate());
 
 persistStore(store,{
     storage:AsyncStorage,
-    blacklist:['userInfo']
+    blacklist:['userInfo','GoodsInfo']
 });
 
 export default store;

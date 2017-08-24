@@ -13,7 +13,6 @@ export function getCoupons(token) {
            }
             dispatch(init(Types.GET_COUPONS_DOING))
             var url=COUPONS_URL+Math.round(new Date().getTime()/1000)+'&app=1'
-            alert(url)
             fetch(url, {
                 method: 'POST',
                 headers: {
